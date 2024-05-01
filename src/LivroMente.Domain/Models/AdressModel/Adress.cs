@@ -4,7 +4,7 @@ namespace LivroMente.Domain.Models.AdressModel
 {
     public class Adress
     {
-       public Guid Id { get; set; } 
+       public Guid Id { get; private set; } 
        public string CEP { get; set; }
        public string City { get; set; }
        public string Neighborhood { get; set; }
@@ -14,7 +14,7 @@ namespace LivroMente.Domain.Models.AdressModel
        public string Complement { get; set; }
        public bool IsActive { get; set; }
        public string UserId { get; set; }
-       public User User {get; set;}
+    
     }
 
 }
