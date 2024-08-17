@@ -4,7 +4,7 @@ namespace LivroMente.Domain.Models.OrderModel
 {
     public class Order
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         public string UserId { get; set; }
         public Guid AdressId { get; set; }
         public Guid PaymentId { get; set; }

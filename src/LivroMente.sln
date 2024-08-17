@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivroMente.Domain", "LivroM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivroMente.Service", "LivroMente.Service\LivroMente.Service.csproj", "{C0F742DE-7AB6-4CEB-A968-85194EA208C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivroMente.Tests", "LivroMente.Tests\LivroMente.Tests.csproj", "{A60F049D-E009-43A1-B547-DAE75BC469B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{C0F742DE-7AB6-4CEB-A968-85194EA208C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0F742DE-7AB6-4CEB-A968-85194EA208C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0F742DE-7AB6-4CEB-A968-85194EA208C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60F049D-E009-43A1-B547-DAE75BC469B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60F049D-E009-43A1-B547-DAE75BC469B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60F049D-E009-43A1-B547-DAE75BC469B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60F049D-E009-43A1-B547-DAE75BC469B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
