@@ -21,8 +21,10 @@ builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 builder.Services.AddScoped<CategoryBookService>();
 builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<BlobService>();
 
-builder.Services.AddScoped(x => new BlobServiceClient(builder.Configuration.GetValue<string>("AzureBlobStorage")));
+
+builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetValue<string>("AzureBlobStorage")));
 builder.Services.AddScoped<IBlobService,BlobService>();
 
 builder.Services.AddAutoMapper(typeof(DataContext));
