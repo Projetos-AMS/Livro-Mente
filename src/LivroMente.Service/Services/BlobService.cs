@@ -12,6 +12,33 @@ namespace LivroMente.Service.Services
         {
             _blobServiceClient = blobServiceClient;
         }
+
+        public async Task DeleteBlobAsync(string blobContainerName, string fileName)
+        {
+            var containerClient = _blobServiceClient.GetBlobContainerClient(blobContainerName);
+            var blobCliente = containerClient.GetBlobClient(fileName);
+            await blobCliente.DeleteIfExistsAsync();
+        }
+
+        public async Task<string> GetByNameFileBlobAsync(string blobContainerName, string fileName)
+        {
+            var containerClient = _blobServiceClient.GetBlobContainerClient(blobContainerName);
+            var blobClient = containerClient.GetBlobClient(fileName);
+            var file = blobClient.Uri.AbsoluteUri;
+            return file;
+        }
+
+        public async Task<IEnumerable<string>> GetFileBlobAsync(string blobContainerName)
+        {
+            var containerClient = GetContainerClient(blobContainerName);
+            var items = new List<string>();
+            await foreach (var item in containerClient.GetBlobsAsync())
+            {
+                items.Add(item.Name);
+            }
+            return items;
+        }
+
         public async Task<Uri> UploadFileBlobAsyn(string blobContainerName, Stream content, string contentType, string fileName)
         {
             var containerClient = GetContainerClient(blobContainerName);
