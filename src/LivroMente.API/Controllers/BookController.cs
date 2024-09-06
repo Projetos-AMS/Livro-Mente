@@ -8,6 +8,7 @@ using LivroMente.Domain.Requests;
 using LivroMente.Service.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace LivroMente.API.Controllers
 {
@@ -26,6 +27,7 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> GetAll()

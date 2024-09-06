@@ -4,13 +4,14 @@ using LivroMente.API.Handlers.CategoryBookHandler;
 using LivroMente.Data.Context;
 using LivroMente.Service.Interfaces;
 using LivroMente.Service.Services;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddOData(options => options.Select().Filter());
 
 builder.Services.AddMediatR(add => add.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
@@ -31,6 +32,18 @@ builder.Services.AddAutoMapper(typeof(DataContext));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+ builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+             .AllowAnyHeader()
+             .AllowAnyMethod();
+        });
+});
+
 
 var app = builder.Build();
 
