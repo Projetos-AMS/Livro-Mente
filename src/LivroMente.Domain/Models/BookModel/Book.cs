@@ -1,5 +1,3 @@
-using LivroMente.Domain.Models.CategoryBookModel;
-
 namespace LivroMente.Domain.Models.BookModel
 {
     public class Book

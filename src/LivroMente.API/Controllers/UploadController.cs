@@ -2,11 +2,14 @@ using System.Net;
 using LivroMente.Domain.Commands.UploadCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivroMente.API.Controllers
 {
     [ApiController]
+     // [Authorize(Roles = "admin")]
+    [AllowAnonymous] 
     [Route("api/[controller]")]
     public class UploadController : ControllerBase
     {
@@ -20,6 +23,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPost("")]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [DisableRequestSizeLimit]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -33,6 +38,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> GetAll()
@@ -44,6 +51,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet ("{fileName}")]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetByName(string fileName)
@@ -55,6 +64,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpDelete("{fileName}")]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> DeleteFile(string fileName)

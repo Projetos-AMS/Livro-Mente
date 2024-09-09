@@ -1,5 +1,3 @@
-
-
 using Microsoft.AspNetCore.Identity;
 
 namespace LivroMente.Domain.Models.IdentityEntities

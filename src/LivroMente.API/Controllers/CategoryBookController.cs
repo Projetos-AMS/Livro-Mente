@@ -3,6 +3,7 @@ using LivroMente.Domain.Commands.CategoryBookCommands;
 using LivroMente.Domain.Requests;
 using LivroMente.Service.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivroMente.API.Controllers
@@ -21,6 +22,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> GetAll()
@@ -33,6 +36,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetById(Guid Id)
@@ -43,6 +48,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPost]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post([FromBody] CategoryBookAddCommand command)
@@ -53,6 +60,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPut("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -65,6 +74,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpDelete("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Delete(Guid Id)

@@ -1,5 +1,3 @@
-using LivroMente.Domain.Models.IdentityEntities;
-
 namespace LivroMente.Domain.Models.AdressModel
 {
     public class Adress

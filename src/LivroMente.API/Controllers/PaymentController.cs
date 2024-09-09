@@ -3,6 +3,7 @@ using LivroMente.Domain.Commands.PaymentCommands;
 using LivroMente.Domain.Requests;
 using LivroMente.Service.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivroMente.API.Controllers
@@ -23,6 +24,8 @@ namespace LivroMente.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [HttpGet]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         public async Task<IActionResult> GetAll()
         {
             var payments = await _paymentService.GetAll();

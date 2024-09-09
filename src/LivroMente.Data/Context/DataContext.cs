@@ -6,13 +6,17 @@ using LivroMente.Domain.Models.IdentityEntities;
 using LivroMente.Domain.Models.OrderDetailsModel;
 using LivroMente.Domain.Models.OrderModel;
 using LivroMente.Domain.Models.PaymentModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LivroMente.Data.Context
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User, Role, string,
+            IdentityUserClaim<string>, UserRole, IdentityUserLogin<string>,
+            IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
-        public DataContext(DbContextOptions options):base(options){}
+        public DataContext(DbContextOptions<DataContext> options):base(options){}
 
         public DbSet<Book> Book {get;set;}
         public DbSet<Adress> Adress {get;set;}
@@ -20,13 +24,13 @@ namespace LivroMente.Data.Context
         public DbSet<Payment> Payment {get;set;}
         public DbSet<Order> Order {get;set;}
         public DbSet<OrderDetails> OrderDetails {get;set;}
-
         public DbSet<User> User {get;set;}
         public DbSet<Role> Role {get;set;}
         public DbSet<UserRole> UserRole {get;set;}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.ApplyConfiguration(new CategoryBookEntityConfiguration());
             modelBuilder.ApplyConfiguration(new AdressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguration());
