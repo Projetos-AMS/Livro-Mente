@@ -7,6 +7,7 @@ using LivroMente.Domain.Commands.BookCommands;
 using LivroMente.Domain.Requests;
 using LivroMente.Service.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 
@@ -28,8 +29,11 @@ namespace LivroMente.API.Controllers
 
         [HttpGet]
         [EnableQuery]
+       // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
+
         public async Task<IActionResult> GetAll()
         {
             var books = await _bookService.GetAll();
@@ -38,6 +42,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetById(Guid Id)
@@ -48,6 +54,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPost]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post([FromBody] BookAddCommand command)
@@ -58,6 +66,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPut("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Put(Guid Id, [FromBody] BookRequest request)
@@ -69,6 +79,8 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpDelete("{Id}")]
+         // [Authorize(Roles = "admin")]
+        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Delete(Guid Id)

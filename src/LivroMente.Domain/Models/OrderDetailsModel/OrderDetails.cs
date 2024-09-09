@@ -1,6 +1,3 @@
-using LivroMente.Domain.Models.BookModel;
-using LivroMente.Domain.Models.OrderModel;
-
 namespace LivroMente.Domain.Models.OrderDetailsModel
 {
     public class OrderDetails

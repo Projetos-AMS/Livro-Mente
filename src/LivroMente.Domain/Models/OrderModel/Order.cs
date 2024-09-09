@@ -11,7 +11,5 @@ namespace LivroMente.Domain.Models.OrderModel
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public float ValueTotal { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
-
-        
     }
 }

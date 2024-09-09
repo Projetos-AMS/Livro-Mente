@@ -2,6 +2,7 @@ using AutoMapper;
 using LivroMente.Domain.Commands.BookCommands;
 using LivroMente.Domain.Models.BookModel;
 using LivroMente.Domain.Models.CategoryBookModel;
+using LivroMente.Domain.Models.IdentityEntities;
 using LivroMente.Domain.Models.PaymentModel;
 using LivroMente.Domain.Requests;
 using LivroMente.Domain.ViewModels;
@@ -16,6 +17,8 @@ namespace LivroMente.Data.Mapping
             CreateMap<CategoryBook,CategoryBookRequest>().ReverseMap();
             CreateMap<Payment,PaymentRequest>().ReverseMap();
             CreateMap<Book,BookAddCommand>().ReverseMap();
+            CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<User, UserLoginViewModel>().ReverseMap();
         }
     }
 }
