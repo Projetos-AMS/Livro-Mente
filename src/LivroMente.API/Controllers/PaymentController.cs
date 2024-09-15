@@ -10,6 +10,7 @@ namespace LivroMente.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [AllowAnonymous] 
     public class PaymentController : ControllerBase
     {
         private readonly PaymentService _paymentService;

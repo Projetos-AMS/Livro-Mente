@@ -17,61 +17,6 @@ namespace LivroMente.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
-            modelBuilder.Entity("LivroMente.Domain.Models.AdressModel.Adress", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Complement")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Neighborhood")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Adress", (string)null);
-                });
-
             modelBuilder.Entity("LivroMente.Domain.Models.BookModel.Book", b =>
                 {
                     b.Property<Guid>("Id")
@@ -284,13 +229,7 @@ namespace LivroMente.Data.Migrations
                     b.Property<Guid>("BookId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("OrderDetailsId")
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid>("OrderId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("OrderId1")
                         .HasColumnType("TEXT");
 
                     b.Property<float>("ValueUni")
@@ -298,11 +237,9 @@ namespace LivroMente.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderDetailsId");
+                    b.HasIndex("BookId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderDetails", (string)null);
                 });
@@ -311,9 +248,6 @@ namespace LivroMente.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("AdressId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
@@ -330,8 +264,6 @@ namespace LivroMente.Data.Migrations
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdressId");
 
                     b.HasIndex("PaymentId");
 
@@ -443,15 +375,6 @@ namespace LivroMente.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("LivroMente.Domain.Models.AdressModel.Adress", b =>
-                {
-                    b.HasOne("LivroMente.Domain.Models.IdentityEntities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Adress_User");
-                });
-
             modelBuilder.Entity("LivroMente.Domain.Models.BookModel.Book", b =>
                 {
                     b.HasOne("LivroMente.Domain.Models.CategoryBookModel.CategoryBook", null)
@@ -482,31 +405,21 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderDetailsModel.OrderDetails", b =>
                 {
-                    b.HasOne("LivroMente.Domain.Models.OrderModel.Order", null)
+                    b.HasOne("LivroMente.Domain.Models.BookModel.Book", null)
                         .WithMany()
-                        .HasForeignKey("OrderDetailsId")
+                        .HasForeignKey("BookId")
                         .IsRequired()
-                        .HasConstraintName("FK_Order_OrderDetails");
-
-                    b.HasOne("LivroMente.Domain.Models.OrderModel.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .IsRequired()
-                        .HasConstraintName("FK_OrderDetails_Order");
+                        .HasConstraintName("FK_OrderDetails_Book");
 
                     b.HasOne("LivroMente.Domain.Models.OrderModel.Order", null)
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId1");
+                        .HasForeignKey("OrderId")
+                        .IsRequired()
+                        .HasConstraintName("FK_OrderDetails_Order");
                 });
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderModel.Order", b =>
                 {
-                    b.HasOne("LivroMente.Domain.Models.AdressModel.Adress", null)
-                        .WithMany()
-                        .HasForeignKey("AdressId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Order_Adress");
-
                     b.HasOne("LivroMente.Domain.Models.PaymentModel.Payment", null)
                         .WithMany()
                         .HasForeignKey("PaymentId")

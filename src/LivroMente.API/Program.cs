@@ -31,6 +31,7 @@ builder.Services.AddScoped<BookService>();
 builder.Services.AddScoped<BlobService>();
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrderService>();
 
 builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetValue<string>("AzureBlobStorage")));
 builder.Services.AddScoped<IBlobService, BlobService>();
