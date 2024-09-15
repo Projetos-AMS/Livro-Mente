@@ -58,7 +58,7 @@ namespace LivroMente.API.Controllers
         public async Task<IActionResult> GetByName(string fileName)
         {
             var file = new UploadGetByNameCommand(fileName);
-            var request = _mediator.Send(file);
+            var request = await _mediator.Send(file);
              if(request == null) return NotFound();
             return Ok(request);
         }

@@ -1,4 +1,3 @@
-using LivroMente.Domain.Models.AdressModel;
 using LivroMente.Domain.Models.IdentityEntities;
 using LivroMente.Domain.Models.OrderDetailsModel;
 using LivroMente.Domain.Models.OrderModel;
@@ -30,26 +29,12 @@ namespace LivroMente.Data.Configuration
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Order_User");
 
-            builder.HasOne<Adress>()
-            .WithMany()
-            .IsRequired()
-            .HasForeignKey(_ => _.AdressId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Order_Adress");
-
             builder.HasOne<Payment>()
             .WithMany()
             .IsRequired()
             .HasForeignKey(_ => _.PaymentId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Order_Payment");
-
-             builder.HasMany<OrderDetails>()
-            .WithOne()
-            .IsRequired()
-            .HasForeignKey("OrderDetailsId")
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Order_OrderDetails");
         }
     }
 }

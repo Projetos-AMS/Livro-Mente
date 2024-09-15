@@ -1,5 +1,4 @@
 using LivroMente.Data.Configuration;
-using LivroMente.Domain.Models.AdressModel;
 using LivroMente.Domain.Models.BookModel;
 using LivroMente.Domain.Models.CategoryBookModel;
 using LivroMente.Domain.Models.IdentityEntities;
@@ -19,7 +18,6 @@ namespace LivroMente.Data.Context
         public DataContext(DbContextOptions<DataContext> options):base(options){}
 
         public DbSet<Book> Book {get;set;}
-        public DbSet<Adress> Adress {get;set;}
         public DbSet<CategoryBook> CategoryBook {get;set;}
         public DbSet<Payment> Payment {get;set;}
         public DbSet<Order> Order {get;set;}
@@ -32,7 +30,6 @@ namespace LivroMente.Data.Context
             base.OnModelCreating(modelBuilder);
             
             modelBuilder.ApplyConfiguration(new CategoryBookEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new AdressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailsEntityConfiguration());

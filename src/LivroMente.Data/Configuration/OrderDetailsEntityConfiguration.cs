@@ -16,18 +16,18 @@ namespace LivroMente.Data.Configuration
                    .ValueGeneratedOnAdd();
 
             builder.HasOne<Order>()
-            .WithMany()
+            .WithMany(o => o.OrderDetails)
             .IsRequired()
-            .HasForeignKey(_ => _.OrderId)
+            .HasForeignKey(b => b.OrderId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_OrderDetails_Order");
 
-            // builder.HasMany<Book>()
-            // .WithOne()
-            // .IsRequired()
-            // .HasForeignKey("BookId")
-            // .OnDelete(DeleteBehavior.ClientSetNull)
-            // .HasConstraintName("FK_OrderDetails_Book");
+            builder.HasOne<Book>()
+            .WithMany()
+            .IsRequired()
+            .HasForeignKey(b => b.BookId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_OrderDetails_Book");
             
 
             builder.Property(od => od.Amount)
