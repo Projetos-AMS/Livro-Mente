@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddOData(options => options.Select().Filter());
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().Expand());
 
 builder.Services.AddMediatR(add => add.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
