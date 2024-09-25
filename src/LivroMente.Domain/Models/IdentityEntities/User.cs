@@ -6,7 +6,6 @@ namespace LivroMente.Domain.Models.IdentityEntities
     public class User : IdentityUser
     {
         public string CompleteName { get; set; }
-        
         public bool IsActive { get; set; }
         
         [JsonIgnore]

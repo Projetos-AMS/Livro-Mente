@@ -28,27 +28,12 @@ namespace LivroMente.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
             modelBuilder.ApplyConfiguration(new CategoryBookEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailsEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BookEntityConfiguration());
-
-            modelBuilder.Entity<UserRole>(up =>{
-                up.HasKey(u => new {u.UserId,u.RoleId});
-
-                up.HasOne(u => u.Role)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(u => u.RoleId)
-                .IsRequired();
-
-                up.HasOne(u => u.User)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(u => u.UserId)
-                .IsRequired();
-            });
+             modelBuilder.ApplyConfiguration(new UserRoleEntityConfiguration());
         }
-
     }
 }

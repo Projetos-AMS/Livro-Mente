@@ -8,7 +8,17 @@ namespace LivroMente.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
-           
+            builder.HasKey(u => new {u.UserId,u.RoleId});
+
+            builder.HasOne(u => u.Role)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(u => u.RoleId)
+                    .IsRequired();
+
+            builder.HasOne(u => u.User)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(u => u.UserId)
+                    .IsRequired();
         }
     }
 }

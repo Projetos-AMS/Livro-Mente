@@ -27,7 +27,6 @@ namespace LivroMente.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult> Get()
         {
-           
                 var entity = _userService.GetUserRolesInclude();
                 if (entity.Any())
                     return Ok( entity);
@@ -62,7 +61,6 @@ namespace LivroMente.API.Controllers
             var command = new LoginCommand(request);
             var result = await _mediator.Send(command);
             return result != null ? Ok(result) : Unauthorized();
-       
         }
   
         [HttpDelete("{Id}")]
