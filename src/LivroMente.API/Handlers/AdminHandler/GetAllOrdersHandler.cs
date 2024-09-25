@@ -1,5 +1,4 @@
 using LivroMente.Domain.Commands.AdminCommands;
-using LivroMente.Domain.Models.OrderModel;
 using LivroMente.Domain.ViewModels;
 using LivroMente.Service.Interfaces;
 using MediatR;
@@ -8,9 +7,9 @@ namespace LivroMente.API.Handlers.AdminHandler
 {
     public class GetAllOrdersHandler : IRequestHandler<AdminAllOrdersCommand,List<AllOrders>>
     {
-        private readonly IBaseService<Order> _service;
+        private readonly IOrderService _service;
 
-        public GetAllOrdersHandler(IBaseService<Order> service)
+        public GetAllOrdersHandler(IOrderService service)
         {
             _service = service;
         }

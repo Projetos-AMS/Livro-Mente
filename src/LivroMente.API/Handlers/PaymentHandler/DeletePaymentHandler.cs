@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.PaymentCommands;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.PaymentHandler
 {
     public class DeletePaymentHandler : IRequestHandler<PaymentDeleteCommand, bool>
     {
-        private readonly PaymentService _paymentService;
+        private readonly IPaymentService _paymentService;
 
-        public DeletePaymentHandler(PaymentService paymentService)
+        public DeletePaymentHandler(IPaymentService paymentService)
         {
             _paymentService = paymentService;
         }

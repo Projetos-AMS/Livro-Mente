@@ -1,7 +1,9 @@
 using System.Net;
+using AutoMapper;
 using LivroMente.Domain.Commands.CategoryBookCommands;
 using LivroMente.Domain.Requests;
-using LivroMente.Service.Services;
+using LivroMente.Domain.ViewModels;
+using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +14,13 @@ namespace LivroMente.API.Controllers
     [Route("api/[controller]")]
     public class CategoryBookController : ControllerBase
     {
-        private readonly CategoryBookService _categoryBookService;
+        private readonly ICategoryBookService _categoryBook;
         private readonly IMediator _mediator;
-
-        public CategoryBookController(CategoryBookService categoryBookService, IMediator mediator)
+    
+        
+        public CategoryBookController(ICategoryBookService categoryBook, IMediator mediator)
         {
-            _categoryBookService = categoryBookService;
+            _categoryBook = categoryBook;
             _mediator = mediator;
         }
 
@@ -28,9 +31,10 @@ namespace LivroMente.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> GetAll()
         {
-            var categories = await _categoryBookService.GetAll();
+            var categories = await _categoryBook.GetAll();
+        
 
-            if (categories.Count() == 0) return NoContent();
+            if (categories == null) return NoContent();
 
             return Ok(categories);
         }
@@ -42,7 +46,7 @@ namespace LivroMente.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetById(Guid Id)
         {
-            var category = await _categoryBookService.GetById(Id);
+            var category = await _categoryBook.GetById(Id);
             if (category == null) return NotFound();
             return Ok(category);
         }

@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.OrderCommands;
-using LivroMente.Domain.Models.OrderModel;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 
 namespace LivroMente.API.Controllers
 {
@@ -18,20 +17,23 @@ namespace LivroMente.API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly OrderService _orderService;
+        private readonly IOrderService _order;
 
-        public OrderController(IMediator mediator,OrderService orderService)
+        public OrderController(IMediator mediator,IOrderService order)
         {
             _mediator = mediator;
-            _orderService = orderService;
+            _order = order;
         }
 
+
+
         [HttpGet]
+        [EnableQuery]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> GetAll()
         {
-            var orders =  _orderService.GetOrderDetails();
+            var orders =  _order.GetOrderDetails();
             if (orders.Count() == 0) return NoContent();
             return Ok(orders);
         }
@@ -45,5 +47,15 @@ namespace LivroMente.API.Controllers
             if(!response) return BadRequest();
             return CreatedAtRoute(response,response);
         }
+
+
+
+
+
+
+
+
+
     }
+
 }

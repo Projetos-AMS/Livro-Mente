@@ -11,32 +11,37 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization; 
 using Microsoft.AspNetCore.Mvc.Authorization;
+using MediatR; 
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using LivroMente.Domain.Module;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddOData(options => options.Select().Filter());
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().Expand());
 
 builder.Services.AddMediatR(add => add.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultContext")));
 
-builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
-builder.Services.AddScoped<IUserService<User>, UserService>();
-builder.Services.AddScoped<CategoryBookService>();
-builder.Services.AddScoped<PaymentService>();
-builder.Services.AddScoped<BookService>();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(_ => _.RegisterModule(new MediatorModule()));
+
 builder.Services.AddScoped<BlobService>();
-builder.Services.AddScoped<RoleService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<OrderService>();
 
 builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetValue<string>("AzureBlobStorage")));
 builder.Services.AddScoped<IBlobService, BlobService>();
-
-builder.Services.AddAutoMapper(typeof(DataContext));
+builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+builder.Services.AddScoped<ICategoryBookService, CategoryBookService>();
+builder.Services.AddScoped<IPaymentService,PaymentService>();
+builder.Services.AddScoped<IRoleService<Role>,RoleService>();
+// builder.Services.AddScoped<IUserService<User>, UserService>();
+builder.Services.AddScoped<IOrderService,OrderService>();
+builder.Services.AddScoped<IBookService,BookService>();
 
 builder.Services.AddEndpointsApiExplorer();
 

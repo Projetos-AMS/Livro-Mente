@@ -1,40 +1,37 @@
-using AutoMapper;
 using LivroMente.Domain.Commands.BookCommands;
 using LivroMente.Domain.Models.BookModel;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.BookHandler
 {
     public class CreateBookHandler : IRequestHandler<BookAddCommand, bool>
     {
-        private readonly BookService _bookService;
-        private readonly IMapper _mapper;
+        private readonly IBookService _bookService;
 
-        public CreateBookHandler(BookService bookService, IMapper mapper)
+        public CreateBookHandler(IBookService bookService)
         {
             _bookService = bookService;
-            _mapper = mapper;
         }
         public async Task<bool> Handle(BookAddCommand request, CancellationToken cancellationToken)
         {
             var book = new Book
-            {
-                Title = request.Title,
-                Author = request.Author,
-                Synopsis = request.Synopsis,
-                Quantity = request.Quantity,
-                Pages = request.Pages,
-                PublishingCompany = request.PublishingCompany,
-                Isbn = request.Isbn,
-                Value = request.Value,
-                Language = request.Language,
-                Classification = request.Classification,
-                IsActive = request.IsActive,
-                CategoryId = request.CategoryId,
-                UrlBook = request.UrlBook,
-                UrlImg = request.UrlImg,
-            };
+            (
+                request.BookRequest.Title,
+                request.BookRequest.Author,
+                request.BookRequest.Synopsis,
+                request.BookRequest.Quantity,
+                request.BookRequest.Pages,
+                request.BookRequest.PublishingCompany,
+                request.BookRequest.Isbn,
+                request.BookRequest.Value,
+                request.BookRequest.Language,
+                request.BookRequest.Classification,
+                request.BookRequest.IsActive,
+                request.BookRequest.CategoryId,
+                request.BookRequest.UrlBook,
+                request.BookRequest.UrlImg
+            );
 
             var result = await _bookService.Add(book);
             if(!result) return false;

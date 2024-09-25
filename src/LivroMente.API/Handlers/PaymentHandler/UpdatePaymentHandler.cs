@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.PaymentCommands;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.PaymentHandler
 {
     public class UpdatePaymentHandler : IRequestHandler<PaymentUpdateCommand, bool>
     {
-        private readonly PaymentService _paymentService;
+        private readonly IPaymentService _paymentService;
 
-        public UpdatePaymentHandler(PaymentService paymentService)
+        public UpdatePaymentHandler(IPaymentService paymentService)
         {
             _paymentService = paymentService;
         }

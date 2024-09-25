@@ -1,8 +1,34 @@
+
 namespace LivroMente.Domain.Models.BookModel
 {
-    public class Book
+    public class Book : Entity
     {
-        public Guid Id { get; private set; }
+        public Book()
+        {
+        }
+
+        public Book(string title,string author,string synopsis,int quantity,int pages,
+            string publishingCompany,string isbn,double value,string language,int classification,
+            bool isActive,Guid categoryId,string urlBook,string urlImg)
+        {
+            Title = title;
+            Author = author;
+            Synopsis = synopsis;
+            Quantity = quantity;
+            Pages = pages;
+            PublishingCompany = publishingCompany;
+            Isbn = isbn;
+            Value = value;
+            Language = language;
+            Classification = classification;
+            IsActive = isActive;
+            CategoryId = categoryId;
+            UrlBook = urlBook;
+            UrlImg = urlImg;
+        }
+
+        
+
         public string  Title { get; set; }
         public string Author { get; set; }
         public string Synopsis { get; set; } 
