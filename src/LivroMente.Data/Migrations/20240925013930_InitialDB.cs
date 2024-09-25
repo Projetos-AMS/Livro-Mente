@@ -100,31 +100,6 @@ namespace LivroMente.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adress",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CEP = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
-                    City = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Neighborhood = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
-                    Street = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
-                    Number = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    State = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    Complement = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adress", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adress_User",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -245,7 +220,6 @@ namespace LivroMente.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    AdressId = table.Column<Guid>(type: "TEXT", nullable: false),
                     PaymentId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ValueTotal = table.Column<float>(type: "REAL", nullable: false)
@@ -253,11 +227,6 @@ namespace LivroMente.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Order_Adress",
-                        column: x => x.AdressId,
-                        principalTable: "Adress",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Order_Payment",
                         column: x => x.PaymentId,
@@ -278,34 +247,22 @@ namespace LivroMente.Data.Migrations
                     OrderId = table.Column<Guid>(type: "TEXT", nullable: false),
                     BookId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Amount = table.Column<int>(type: "INTEGER", nullable: false),
-                    ValueUni = table.Column<float>(type: "REAL", nullable: false),
-                    OrderDetailsId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    OrderId1 = table.Column<Guid>(type: "TEXT", nullable: true)
+                    ValueUni = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_OrderDetails_Book",
+                        column: x => x.BookId,
+                        principalTable: "Book",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_OrderDetails_Order",
                         column: x => x.OrderId,
                         principalTable: "Order",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OrderDetails_Order_OrderId1",
-                        column: x => x.OrderId1,
-                        principalTable: "Order",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Order_OrderDetails",
-                        column: x => x.OrderDetailsId,
-                        principalTable: "Order",
-                        principalColumn: "Id");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Adress_UserId",
-                table: "Adress",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -350,11 +307,6 @@ namespace LivroMente.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_AdressId",
-                table: "Order",
-                column: "AdressId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Order_PaymentId",
                 table: "Order",
                 column: "PaymentId");
@@ -365,19 +317,14 @@ namespace LivroMente.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderDetailsId",
+                name: "IX_OrderDetails_BookId",
                 table: "OrderDetails",
-                column: "OrderDetailsId");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",
                 table: "OrderDetails",
                 column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderId1",
-                table: "OrderDetails",
-                column: "OrderId1");
         }
 
         /// <inheritdoc />
@@ -399,22 +346,19 @@ namespace LivroMente.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Book");
-
-            migrationBuilder.DropTable(
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "CategoryBook");
+                name: "Book");
 
             migrationBuilder.DropTable(
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "Adress");
+                name: "CategoryBook");
 
             migrationBuilder.DropTable(
                 name: "Payment");

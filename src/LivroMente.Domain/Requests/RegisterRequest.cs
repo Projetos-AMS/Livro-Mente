@@ -4,7 +4,7 @@ namespace LivroMente.Domain.Requests
 {
     public class RegisterRequest
     {
-       [Required(ErrorMessage = "Nome completo é obrigatório.")]
+        [Required(ErrorMessage = "Nome completo é obrigatório.")]
         [StringLength(100, ErrorMessage = "Nome completo deve ter no máximo 100 caracteres.")]
         public string CompleteName { get; set; }
 
@@ -25,6 +25,6 @@ namespace LivroMente.Domain.Requests
         [Required(ErrorMessage = "O papel (role) do usuário é obrigatório.")]
         [RegularExpression("Admin|Usuario", ErrorMessage = "Role deve ser 'Admin' ou 'Usuario'.")]
         public string Role { get; set; }
-        public bool IsActive { get; set; } = true; // Valor padrão true
+        public bool IsActive { get; set; } = true; 
     }
 }
