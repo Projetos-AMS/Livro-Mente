@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.UploadCommands;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.UploadHandler
 {
     public class GetAllUploadHandler : IRequestHandler<UploadGetAllCommand, List<string>>
     {
-        private readonly BlobService _blobService;
+        private readonly IBlobService _blobService;
 
-        public GetAllUploadHandler(BlobService blobService)
+        public GetAllUploadHandler(IBlobService blobService)
         {
             _blobService = blobService;
         }

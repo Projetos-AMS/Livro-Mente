@@ -38,7 +38,6 @@ namespace LivroMente.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Isbn")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
@@ -68,7 +67,6 @@ namespace LivroMente.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UrlBook")
-                        .HasMaxLength(80)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UrlImg")
@@ -254,6 +252,9 @@ namespace LivroMente.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("PaymentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")

@@ -28,12 +28,7 @@ namespace LivroMente.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new CategoryBookEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new PaymentEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new OrderDetailsEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new BookEntityConfiguration());
-             modelBuilder.ApplyConfiguration(new UserRoleEntityConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
         }
     }
 }

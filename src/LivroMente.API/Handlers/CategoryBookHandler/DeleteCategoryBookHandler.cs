@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.CategoryBookCommands;
-using LivroMente.Domain.Models.CategoryBookModel;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.CategoryBookHandler
 {
     public class DeleteCategoryBookHandler : IRequestHandler<CategoryBookDeleteCommand, bool>
     {
-        private readonly CategoryBookService _categoryBookService;
+        private readonly ICategoryBookService _categoryBookService;
 
-        public DeleteCategoryBookHandler(CategoryBookService categoryBookService)
+        public DeleteCategoryBookHandler(ICategoryBookService categoryBookService)
         {
             _categoryBookService = categoryBookService;
         }

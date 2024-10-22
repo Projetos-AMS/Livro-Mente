@@ -1,11 +1,12 @@
 using LivroMente.Data.Context;
 using LivroMente.Domain.Models.OrderDetailsModel;
 using LivroMente.Domain.Models.OrderModel;
+using LivroMente.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LivroMente.Service.Services
 {
-    public class OrderService : BaseService<Order>
+    public class OrderService : BaseService<Order>,IOrderService
     {
         private readonly DataContext _context;
 

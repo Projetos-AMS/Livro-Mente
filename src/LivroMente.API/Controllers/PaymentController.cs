@@ -1,7 +1,6 @@
 using System.Net;
 using LivroMente.Domain.Commands.PaymentCommands;
-using LivroMente.Domain.Requests;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +12,12 @@ namespace LivroMente.API.Controllers
     [AllowAnonymous] 
     public class PaymentController : ControllerBase
     {
-        private readonly PaymentService _paymentService;
+        private readonly IPaymentService _payment;
         private readonly IMediator _mediator;
 
-        public PaymentController(PaymentService paymentService,IMediator mediator)
+        public PaymentController(IPaymentService payment,IMediator mediator)
         {
-            _paymentService = paymentService;
+            _payment = payment;
             _mediator = mediator;
         }
 
@@ -29,7 +28,7 @@ namespace LivroMente.API.Controllers
         [AllowAnonymous] 
         public async Task<IActionResult> GetAll()
         {
-            var payments = await _paymentService.GetAll();
+            var payments = await _payment.GetAll();
             if (payments.Count() == 0) return NoContent();
             return Ok(payments);
 
@@ -40,7 +39,7 @@ namespace LivroMente.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetById(Guid Id)
         {
-            var payment = await _paymentService.GetById(Id);
+            var payment = await _payment.GetById(Id);
             if (payment == null) return NotFound();
             return Ok(payment);
         }
@@ -55,27 +54,27 @@ namespace LivroMente.API.Controllers
           return CreatedAtRoute(response,response);
         }
 
-        [HttpPut("{Id}")]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Put(Guid Id, [FromBody] PaymentRequest paymentRequest)
-        {
-            var cmd = new PaymentUpdateCommand(Id,paymentRequest);
-            var response = await _mediator.Send(cmd);
-            if(!response) return BadRequest();
-            return Ok();        
-        }
+        // [HttpPut("{Id}")]
+        // [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        // [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        // [ProducesResponseType((int)HttpStatusCode.OK)]
+        // public async Task<IActionResult> Put(Guid Id, [FromBody] PaymentRequest paymentRequest)
+        // {
+        //     var cmd = new PaymentUpdateCommand(Id,paymentRequest);
+        //     var response = await _mediator.Send(cmd);
+        //     if(!response) return BadRequest();
+        //     return Ok();        
+        // }
 
-        [HttpDelete("{Id}")]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Delete(Guid Id)
-        {
-            var cmd = new PaymentDeleteCommand(Id);
-            var response = await _mediator.Send(cmd);
-            if(!response) return BadRequest();
-            return Ok();
-        }
+        // [HttpDelete("{Id}")]
+        // [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        // [ProducesResponseType((int)HttpStatusCode.OK)]
+        // public async Task<IActionResult> Delete(Guid Id)
+        // {
+        //     var cmd = new PaymentDeleteCommand(Id);
+        //     var response = await _mediator.Send(cmd);
+        //     if(!response) return BadRequest();
+        //     return Ok();
+        // }
     }
 }

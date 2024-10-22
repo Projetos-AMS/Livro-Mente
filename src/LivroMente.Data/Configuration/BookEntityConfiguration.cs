@@ -30,7 +30,6 @@ namespace LivroMente.Data.Configuration
                 .IsRequired();
 
             builder.Property(b => b.Isbn)
-            .IsRequired()
             .HasMaxLength(20);
 
             builder.Property(b => b.Value)
@@ -42,9 +41,6 @@ namespace LivroMente.Data.Configuration
 
             builder.Property(b => b.Classification)
                 .IsRequired();
-
-            builder.Property(b => b.UrlBook)
-                .HasMaxLength(80);
 
             builder.HasOne<CategoryBook>()
                   .WithMany()

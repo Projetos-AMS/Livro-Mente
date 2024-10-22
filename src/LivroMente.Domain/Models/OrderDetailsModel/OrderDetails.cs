@@ -1,8 +1,17 @@
 namespace LivroMente.Domain.Models.OrderDetailsModel
 {
-    public class OrderDetails
+    public class OrderDetails : Entity
     {
-        public Guid Id { get; private set; }
+        public OrderDetails()
+        {
+        }
+        public OrderDetails(Guid orderId,Guid bookId,int amount,float valueUni)
+        {
+            OrderId = orderId;
+            BookId = bookId;
+            Amount = amount;
+            ValueUni = valueUni;
+        }
         public Guid OrderId { get; set; }
         public Guid BookId { get; set; }
         public int Amount { get; set; }
