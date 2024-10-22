@@ -1,14 +1,14 @@
 using LivroMente.Domain.Commands.BookCommands;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 
 namespace LivroMente.API.Handlers.BookHandler
 {
     public class UpdateBookHandler : IRequestHandler<BookUpdateCommand, bool>
     {
-        private readonly BookService _bookService;
+        private readonly IBookService _bookService;
 
-        public UpdateBookHandler(BookService bookService)
+        public UpdateBookHandler(IBookService bookService)
         {
             _bookService = bookService;
         }

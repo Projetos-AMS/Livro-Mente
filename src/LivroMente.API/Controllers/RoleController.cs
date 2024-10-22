@@ -1,6 +1,7 @@
 using System.Net;
 using LivroMente.Domain.Models.IdentityEntities;
 using LivroMente.Domain.ViewModels;
+using LivroMente.Service.Interfaces;
 using LivroMente.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,8 +15,8 @@ namespace LivroMente.API.Controllers
     {
          private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
-        private readonly RoleService _roleService;
-        public RoleController(RoleManager<Role> roleManager, UserManager<User> userManager, RoleService roleService)
+        private readonly IRoleService<Role> _roleService;
+        public RoleController(RoleManager<Role> roleManager, UserManager<User> userManager, IRoleService<Role> roleService)
         {
             _roleManager = roleManager;
             _userManager = userManager;

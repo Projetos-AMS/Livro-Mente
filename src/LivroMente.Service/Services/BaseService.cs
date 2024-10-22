@@ -1,10 +1,11 @@
 using LivroMente.Data.Context;
+using LivroMente.Domain.Models;
 using LivroMente.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LivroMente.Service.Services
 {
-    public class BaseService<T> : IBaseService<T> where T : class
+    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : Entity
     {
         private readonly DataContext _context;
 
@@ -12,10 +13,9 @@ namespace LivroMente.Service.Services
         {
             _context = context;
         }
-        public async Task<bool> Add(T entity)
+        public async Task<bool> Add(TEntity entity)
         {
-            var save = _context.Add(entity);
-            if (save == null) return false;
+            _context.Add(entity);
             await Save();
             return true;
         }
@@ -23,23 +23,19 @@ namespace LivroMente.Service.Services
 
         public async Task<bool> Delete(Guid id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
-            if (entity == null)
-            {
-                return false;
-            }
-            _context.Set<T>().Remove(entity);
+            var entity = await _context.Set<TEntity>().FindAsync(id);
+            _context.Set<TEntity>().Remove(entity);
             return await Save();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task<TEntity> GetById(Guid id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _context.Set<TEntity>().FindAsync(id);
         }
 
         public async Task<bool> Save()
@@ -50,14 +46,8 @@ namespace LivroMente.Service.Services
 
         public async Task<bool> Update(Guid id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
-
-            if (entity == null)
-            {
-                return false;
-            }
-
-            _context.Set<T>().Update(entity);
+            var entity = await _context.Set<TEntity>().FindAsync(id);
+            _context.Set<TEntity>().Update(entity);
             return await Save();
         }
     }

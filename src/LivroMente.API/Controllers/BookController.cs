@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using LivroMente.Domain.Commands.BookCommands;
 using LivroMente.Domain.Requests;
-using LivroMente.Service.Services;
+using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +14,10 @@ namespace LivroMente.API.Controllers
 
     public class BookController : ControllerBase
     {
-        private readonly BookService _bookService;
+        private readonly IBookService _bookService;
         private readonly IMediator _mediator;
 
-        public BookController(BookService bookService, IMediator mediator)
+        public BookController(IBookService bookService, IMediator mediator)
         {
             _bookService = bookService;
             _mediator = mediator;
