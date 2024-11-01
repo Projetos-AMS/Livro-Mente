@@ -25,7 +25,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
     <PackageReference Include="mercadopago-sdk" Version="2.4.1" />
-    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LivroMente.Service\LivroMente.Service.csproj" />
