@@ -16,8 +16,17 @@
     <PackageReference Include="FluentValidation" Version="11.10.0"/>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0"/>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
+    <PackageReference Include="mercadopago-sdk" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LivroMente.Service\LivroMente.Service.csproj"/>
+    <ProjectReference Include="..\LivroMente.Service\LivroMente.Service.csproj" />
   </ItemGroup>
 </Project>

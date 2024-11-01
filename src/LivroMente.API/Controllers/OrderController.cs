@@ -5,6 +5,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 
 namespace LivroMente.API.Controllers
 {
@@ -21,6 +24,8 @@ namespace LivroMente.API.Controllers
             _mediator = mediator;
             _order = order;
         }
+
+
 
         [HttpGet]
         [EnableQuery]
@@ -42,5 +47,15 @@ namespace LivroMente.API.Controllers
             if(!response) return BadRequest();
             return CreatedAtRoute(response,response);
         }
+
+
+
+
+
+
+
+
+
     }
+
 }

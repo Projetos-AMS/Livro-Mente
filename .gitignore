@@ -11,7 +11,7 @@
 *.sln.docstates
 
 
-
+appsettings.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -318,7 +318,7 @@ _Pvt_Extensions
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
-
+.env
 # FAKE - F# Make
 .fake/
 
