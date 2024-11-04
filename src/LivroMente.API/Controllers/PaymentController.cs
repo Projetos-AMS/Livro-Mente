@@ -1,5 +1,5 @@
 using System.Net;
-using LivroMente.Domain.Commands.PaymentCommands;
+using LivroMente.API.Commands.PaymentCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

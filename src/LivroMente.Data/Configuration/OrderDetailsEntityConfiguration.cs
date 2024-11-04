@@ -22,7 +22,7 @@ namespace LivroMente.Data.Configuration
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_OrderDetails_Order");
 
-            builder.HasOne<Book>()
+            builder.HasOne(b => b.Book)
             .WithMany()
             .IsRequired()
             .HasForeignKey(b => b.BookId)

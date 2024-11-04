@@ -1,8 +1,6 @@
 using System.Net;
-using AutoMapper;
-using LivroMente.Domain.Commands.CategoryBookCommands;
-using LivroMente.Domain.Requests;
-using LivroMente.Domain.ViewModels;
+using LivroMente.API.Commands.CategoryBookCommands;
+using LivroMente.API.Requests;
 using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

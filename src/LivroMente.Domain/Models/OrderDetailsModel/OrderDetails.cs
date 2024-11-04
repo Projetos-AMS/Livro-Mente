@@ -1,3 +1,5 @@
+using LivroMente.Domain.Models.BookModel;
+
 namespace LivroMente.Domain.Models.OrderDetailsModel
 {
     public class OrderDetails : Entity
@@ -16,6 +18,7 @@ namespace LivroMente.Domain.Models.OrderDetailsModel
         public Guid BookId { get; set; }
         public int Amount { get; set; }
         public float ValueUni { get; set; }
+        public Book Book{ get; set; }
 
     }
 }

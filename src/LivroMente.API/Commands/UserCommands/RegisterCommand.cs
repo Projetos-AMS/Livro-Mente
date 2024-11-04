@@ -1,8 +1,8 @@
-using LivroMente.Domain.Requests;
-using LivroMente.Domain.ViewModels;
+using LivroMente.API.Requests;
+using LivroMente.API.ViewModels;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.UserCommands
+namespace LivroMente.API.Commands.UserCommands
 {
     public class RegisterCommand : IRequest<UserViewModel>
     {

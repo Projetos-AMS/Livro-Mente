@@ -1,5 +1,5 @@
 using FluentValidation;
-using LivroMente.Domain.Commands.CategoryBookCommands;
+using LivroMente.API.Commands.CategoryBookCommands;
 
 namespace LivroMente.API.Validators.CategoryBook
 {

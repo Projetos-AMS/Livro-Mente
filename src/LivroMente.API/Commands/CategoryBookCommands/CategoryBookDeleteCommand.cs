@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace LivroMente.Domain.Commands.CategoryBookCommands
+namespace LivroMente.API.Commands.CategoryBookCommands
 {
     public class CategoryBookDeleteCommand : IRequest<bool>
     {

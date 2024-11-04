@@ -1,8 +1,9 @@
 using System.Net;
-using LivroMente.Domain.Commands.AdminCommands;
+using LivroMente.API.Commands.AdminCommands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace LivroMente.API.Controllers
 {
@@ -19,6 +20,7 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [Route("allOrders")]

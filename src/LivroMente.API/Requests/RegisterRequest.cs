@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace LivroMente.Domain.Requests
+namespace LivroMente.API.Requests
 {
     public class RegisterRequest
     {

@@ -1,6 +1,4 @@
-using LivroMente.Domain.Models;
-
-namespace LivroMente.Domain.ViewModels
+namespace LivroMente.API.ViewModels
 {
     public class CategoryBookViewModel 
     {

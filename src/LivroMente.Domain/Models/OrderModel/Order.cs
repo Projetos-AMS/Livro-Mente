@@ -1,3 +1,4 @@
+using LivroMente.Domain.Models.IdentityEntities;
 using LivroMente.Domain.Models.OrderDetailsModel;
 
 namespace LivroMente.Domain.Models.OrderModel
@@ -22,6 +23,7 @@ namespace LivroMente.Domain.Models.OrderModel
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public float ValueTotal { get; set; }
         public string  Status { get; set; }
+        public User User { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

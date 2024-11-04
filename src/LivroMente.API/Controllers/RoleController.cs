@@ -1,8 +1,7 @@
 using System.Net;
+using LivroMente.API.ViewModels;
 using LivroMente.Domain.Models.IdentityEntities;
-using LivroMente.Domain.ViewModels;
 using LivroMente.Service.Interfaces;
-using LivroMente.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

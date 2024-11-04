@@ -1,7 +1,7 @@
-using LivroMente.Domain.Requests;
+using LivroMente.API.Requests;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.UserCommands
+namespace LivroMente.API.Commands.UserCommands
 {
     public class LoginCommand : IRequest<string>
     {

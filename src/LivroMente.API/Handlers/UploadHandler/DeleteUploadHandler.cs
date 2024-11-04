@@ -1,4 +1,4 @@
-using LivroMente.Domain.Commands.UploadCommands;
+using LivroMente.API.Commands.UploadCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
 

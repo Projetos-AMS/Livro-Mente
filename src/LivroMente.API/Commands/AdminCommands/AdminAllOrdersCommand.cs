@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LivroMente.Domain.ViewModels;
+using LivroMente.API.ViewModels;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.AdminCommands
+namespace LivroMente.API.Commands.AdminCommands
 {
     public class AdminAllOrdersCommand : IRequest<List<AllOrders>>
     {

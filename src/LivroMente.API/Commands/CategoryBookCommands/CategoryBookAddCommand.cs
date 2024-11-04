@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace LivroMente.Domain.Requests
+namespace LivroMente.API.Requests
 {
     public class CategoryBookAddCommand : IRequest<bool>
     {

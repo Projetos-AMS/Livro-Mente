@@ -22,7 +22,7 @@ namespace LivroMente.Data.Configuration
             builder.Property(o => o.ValueTotal)
                    .IsRequired();
 
-            builder.HasOne<User>()
+            builder.HasOne(u => u.User)
             .WithMany()
             .IsRequired()
             .HasForeignKey(_ => _.UserId)

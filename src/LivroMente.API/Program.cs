@@ -17,10 +17,15 @@ using MediatR;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using LivroMente.Domain.Module;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().Expand());
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy().Count().Expand().SetMaxTop(100))
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    }); ;
 
 builder.Services.AddMediatR(add => add.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

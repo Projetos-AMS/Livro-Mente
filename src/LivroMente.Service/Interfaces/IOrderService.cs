@@ -8,6 +8,7 @@ namespace LivroMente.Service.Interfaces
 {
     public interface IOrderService : IBaseService<Order>
     {
-         public List<Order> GetOrderDetails();
+         public List<Order> GetOrder();
+        //  public Task<Order> GetOrderDetails(Guid id);
     }
 }

@@ -1,6 +1,6 @@
 using System.Net;
-using LivroMente.Domain.Commands.BookCommands;
-using LivroMente.Domain.Requests;
+using LivroMente.API.Requests;
+using LivroMente.API.Commands.BookCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

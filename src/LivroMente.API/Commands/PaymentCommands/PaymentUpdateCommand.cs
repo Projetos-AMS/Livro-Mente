@@ -1,7 +1,7 @@
-using LivroMente.Domain.Requests;
+using LivroMente.API.Requests;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.PaymentCommands
+namespace LivroMente.API.Commands.PaymentCommands
 {
     public class PaymentUpdateCommand : IRequest<bool>
     {

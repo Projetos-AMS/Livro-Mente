@@ -1,4 +1,4 @@
-namespace LivroMente.Domain.ViewModels
+namespace LivroMente.API.ViewModels
 {
     public class UpdateUserRoleViewModel
     {

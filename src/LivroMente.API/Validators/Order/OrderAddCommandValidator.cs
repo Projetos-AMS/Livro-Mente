@@ -1,5 +1,5 @@
 using FluentValidation;
-using LivroMente.Domain.Commands.OrderCommands;
+using LivroMente.API.Commands.OrderCommands;
 
 namespace LivroMente.API.Validators.Order
 {

@@ -1,5 +1,5 @@
-using LivroMente.Domain.Commands.AdminCommands;
-using LivroMente.Domain.ViewModels;
+using LivroMente.API.Commands.AdminCommands;
+using LivroMente.API.ViewModels;
 using LivroMente.Service.Interfaces;
 using MediatR;
 

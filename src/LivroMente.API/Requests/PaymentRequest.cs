@@ -1,4 +1,4 @@
-namespace LivroMente.Domain.Requests
+namespace LivroMente.API.Requests
 {
     public class PaymentRequest
     {
