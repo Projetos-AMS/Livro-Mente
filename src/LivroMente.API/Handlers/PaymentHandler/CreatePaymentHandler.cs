@@ -1,4 +1,4 @@
-using LivroMente.Domain.Commands.PaymentCommands;
+using LivroMente.API.Commands.PaymentCommands;
 using LivroMente.Domain.Models.PaymentModel;
 using LivroMente.Service.Interfaces;
 using MediatR;

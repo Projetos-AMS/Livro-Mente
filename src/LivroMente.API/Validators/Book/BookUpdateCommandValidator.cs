@@ -1,5 +1,5 @@
 using FluentValidation;
-using LivroMente.Domain.Commands.BookCommands;
+using LivroMente.API.Commands.BookCommands;
 
 namespace LivroMente.API.Validators.Book
 {
@@ -38,10 +38,6 @@ namespace LivroMente.API.Validators.Book
             RuleFor(_ => _.BookRequest.Isbn)
                 .MaximumLength(20)
                 .WithMessage("Isbn must be short than 20 characters");
-            
-            RuleFor(_ => _.BookRequest.Value)
-                .NotEmpty()
-                .WithMessage("Value is required.");
 
             RuleFor(_ => _.BookRequest.Language)
                 .NotEmpty()

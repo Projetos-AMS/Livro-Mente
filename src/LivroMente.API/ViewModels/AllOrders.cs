@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LivroMente.Domain.ViewModels
+namespace LivroMente.API.ViewModels
 {
     public class AllOrders
     {

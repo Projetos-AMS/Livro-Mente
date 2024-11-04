@@ -1,5 +1,5 @@
 using FluentValidation;
-using LivroMente.Domain.Requests;
+using LivroMente.API.Requests;
 
 namespace LivroMente.Domain.Validators
 {

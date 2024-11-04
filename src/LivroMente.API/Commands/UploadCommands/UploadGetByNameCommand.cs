@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace LivroMente.Domain.Commands.UploadCommands
+namespace LivroMente.API.Commands.UploadCommands
 {
     public class UploadGetByNameCommand : IRequest<string>
     {

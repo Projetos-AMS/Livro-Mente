@@ -1,4 +1,4 @@
-using LivroMente.Domain.Commands.BookCommands;
+using LivroMente.API.Commands.BookCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
 

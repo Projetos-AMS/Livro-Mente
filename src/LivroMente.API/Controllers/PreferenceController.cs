@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using DotNetEnv;
-using LivroMente.Domain.Requests;
 using MercadoPago.Client;
 using MercadoPago.Client.Preference;
 using MercadoPago.Config;
@@ -14,7 +9,7 @@ using PreferenceRequest = LivroMente.API.Requests.PreferenceRequest;
 
 namespace LivroMente.API.Controllers
 {
-     [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     [AllowAnonymous] 
 

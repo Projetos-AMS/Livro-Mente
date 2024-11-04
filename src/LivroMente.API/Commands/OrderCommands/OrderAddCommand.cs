@@ -1,7 +1,7 @@
 using LivroMente.API.Requests;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.OrderCommands
+namespace LivroMente.API.Commands.OrderCommands
 {
     public class OrderAddCommand : IRequest<bool>
     {

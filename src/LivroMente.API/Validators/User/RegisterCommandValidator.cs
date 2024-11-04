@@ -1,5 +1,5 @@
 using FluentValidation;
-using LivroMente.Domain.Commands.UserCommands;
+using LivroMente.API.Commands.UserCommands;
 
 namespace LivroMente.API.Validators.User
 {

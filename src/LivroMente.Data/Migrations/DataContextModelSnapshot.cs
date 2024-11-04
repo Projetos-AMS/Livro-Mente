@@ -406,7 +406,7 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderDetailsModel.OrderDetails", b =>
                 {
-                    b.HasOne("LivroMente.Domain.Models.BookModel.Book", null)
+                    b.HasOne("LivroMente.Domain.Models.BookModel.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .IsRequired()
@@ -417,6 +417,8 @@ namespace LivroMente.Data.Migrations
                         .HasForeignKey("OrderId")
                         .IsRequired()
                         .HasConstraintName("FK_OrderDetails_Order");
+
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderModel.Order", b =>
@@ -427,11 +429,13 @@ namespace LivroMente.Data.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Order_Payment");
 
-                    b.HasOne("LivroMente.Domain.Models.IdentityEntities.User", null)
+                    b.HasOne("LivroMente.Domain.Models.IdentityEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_Order_User");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

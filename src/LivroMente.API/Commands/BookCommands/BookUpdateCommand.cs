@@ -1,7 +1,7 @@
-using LivroMente.Domain.Requests;
+using LivroMente.API.Requests;
 using MediatR;
 
-namespace LivroMente.Domain.Commands.BookCommands
+namespace LivroMente.API.Commands.BookCommands
 {
     public class BookUpdateCommand : IRequest<bool>
     {

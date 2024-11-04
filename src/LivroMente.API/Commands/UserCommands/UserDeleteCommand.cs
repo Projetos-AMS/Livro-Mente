@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace LivroMente.Domain.Commands.UserCommands
+namespace LivroMente.API.Commands.UserCommands
 {
     public class UserDeleteCommand : IRequest<bool>
     {

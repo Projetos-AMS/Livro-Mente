@@ -1,5 +1,5 @@
 using System.Net;
-using LivroMente.Domain.Commands.UploadCommands;
+using LivroMente.API.Commands.UploadCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
