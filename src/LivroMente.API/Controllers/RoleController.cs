@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace LivroMente.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Roles = "admin")]
+           // [AllowAnonymous] 
     [ApiController]
     public class RoleController : ControllerBase
     {
@@ -21,11 +23,8 @@ namespace LivroMente.API.Controllers
             _userManager = userManager;
             _roleService = roleService;
         }
-
         
         [HttpGet] 
-        // [Authorize(Roles = "Admin")]
-        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get()
         {
@@ -34,7 +33,6 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPost("CreateRole")]
-        [AllowAnonymous]  
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]      
         public async Task<IActionResult> CreateRole(RoleViewModel roleDto)
@@ -42,7 +40,6 @@ namespace LivroMente.API.Controllers
             try
             {
                 var retorno = await _roleManager.CreateAsync(new Role { Name = roleDto.Name });
-
                 return Ok(retorno);
             }
             catch (Exception ex)
@@ -52,7 +49,6 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpPut("UpdateUserRole")]
-        [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

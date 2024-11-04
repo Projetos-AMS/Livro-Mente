@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LivroMente.API.Commands.UserCommands
 {
-    public class RegisterCommand : IRequest<UserViewModel>
+    public class RegisterCommand : IRequest<string>
     {
         public RegisterCommand(RegisterRequest request)
         {
@@ -13,7 +13,6 @@ namespace LivroMente.API.Commands.UserCommands
             Password = request.Password;
             ConfirmPassword = request.ConfirmPassword;
             Role = request.Role;
-            IsActive = request.IsActive;
         }
 
         public string CompleteName { get; }
@@ -22,6 +21,5 @@ namespace LivroMente.API.Commands.UserCommands
         public string Password { get; }
         public string ConfirmPassword { get; }
         public string Role { get; }
-        public bool IsActive { get; }
     }
 }

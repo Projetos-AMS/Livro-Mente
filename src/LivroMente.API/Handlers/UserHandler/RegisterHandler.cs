@@ -1,26 +1,17 @@
-// using LivroMente.Domain.Commands.UserCommands;
-// using LivroMente.Domain.Models.IdentityEntities;
-// using LivroMente.Domain.ViewModels;
-// using LivroMente.Service.Interfaces;
-// using MediatR;
+using LivroMente.API.Commands.UserCommands;
+using LivroMente.Domain.Models.IdentityEntities;
+using LivroMente.Service.Interfaces;
+using MediatR;
 
-// namespace LivroMente.API.Handlers.UserHandler
-// {
-//     public class RegisterHandler : IRequestHandler<RegisterCommand, UserViewModel>
-//     {
-//         private readonly IUserService<User> _userService;
-//         public RegisterHandler(IUserService<User> userService){_userService = userService;}
-//         public async Task<UserViewModel> Handle(RegisterCommand command, CancellationToken cancellationToken)
-//         {
-//             var request = new Domain.Requests.RegisterRequest {
-//                 CompleteName = command.CompleteName,
-//                 Email = command.Email,
-//                 Password = command.Password,
-//                 ConfirmPassword = command.ConfirmPassword,
-//                 Role = command.Role,
-//                 IsActive = command.IsActive,
-//             };
-//              return await _userService.RegisterAsync(request);
-//         }
-//     }
-// }
+namespace LivroMente.API.Handlers.UserHandler
+{
+    public class RegisterHandler : IRequestHandler<RegisterCommand, string>
+    {
+        private readonly IUserService<User> _userService;
+        public RegisterHandler(IUserService<User> userService){_userService = userService;}
+        public async Task<string> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        {
+             return await _userService.RegisterAsync(command.CompleteName, command.Email, command.Role, command.Password);
+        }
+    }
+}
