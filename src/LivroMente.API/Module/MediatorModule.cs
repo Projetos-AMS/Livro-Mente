@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Autofac;
 using LivroMente.Domain.Validators;
 using MediatR;
