@@ -43,8 +43,8 @@ builder.Services.AddScoped<IBlobService, BlobService>();
 builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 builder.Services.AddScoped<ICategoryBookService, CategoryBookService>();
 builder.Services.AddScoped<IPaymentService,PaymentService>();
-builder.Services.AddScoped<IRoleService<Role>,RoleService>();
-builder.Services.AddScoped<IUserService<User>, UserService>();
+builder.Services.AddScoped<IRoleService,RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IOrderService,OrderService>();
 builder.Services.AddScoped<IBookService,BookService>();
 

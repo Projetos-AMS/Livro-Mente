@@ -7,8 +7,8 @@ namespace LivroMente.API.Handlers.UserHandler
 {
     public class LoginHandler : IRequestHandler<LoginCommand, string>
     {
-        private readonly IUserService<User> _userService;
-        public LoginHandler(IUserService<User> userService) {_userService = userService; }
+        private readonly IUserService _userService;
+        public LoginHandler(IUserService userService) {_userService = userService; }
         public  Task<string> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
             return _userService.LoginAsync(command.Email, command.Password);

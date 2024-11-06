@@ -13,10 +13,10 @@ namespace LivroMente.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService<User> _userService;
+        private readonly IUserService _userService;
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator, IUserService<User> userService)
+        public UserController(IMediator mediator, IUserService userService)
         {
             _userService = userService;
             _mediator = mediator;
@@ -24,14 +24,24 @@ namespace LivroMente.API.Controllers
         
         [HttpGet("roles")]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult> GetUserRoles()
         {
                 var entity = _userService.GetUserRolesInclude();
-                if (entity.Any())
-                    return Ok( entity);
+                if (entity.Result.Any())
+                    return Ok(entity.Result);
+                return NoContent(); 
+        }
+        [HttpGet("{id}")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        public async Task<ActionResult> GetUserbyId(Guid id)
+        {
+                var entity = _userService.GetByIdAsync(id);
+                if (entity.Result != null)
+                    return Ok( entity.Result);
                 return NoContent(); 
         }
        
@@ -67,7 +77,6 @@ namespace LivroMente.API.Controllers
   
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
-        //[AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]

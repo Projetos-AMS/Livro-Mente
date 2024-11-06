@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LivroMente.Service.Services
 {
-    public class RoleService : IRoleService<Role>
+    public class RoleService : IRoleService
     {
         private readonly DataContext _context;
         public RoleService(DataContext context)
