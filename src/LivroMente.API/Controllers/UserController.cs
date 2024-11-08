@@ -57,7 +57,7 @@ namespace LivroMente.API.Controllers
 
             var command = new RegisterCommand(request);
             var result = await _mediator.Send(command);
-            return result != null ? Ok(result) : Unauthorized();
+            return result != null ? Ok(new { token = result }) : Unauthorized();
         }
 
         [HttpPost("login")]
@@ -72,7 +72,7 @@ namespace LivroMente.API.Controllers
 
             var command = new LoginCommand(request);
             var result = await _mediator.Send(command);
-            return result != null ? Ok(result) : Unauthorized();
+            return result != null ? Ok(new { token = result }) : Unauthorized();
         }
   
         [HttpDelete("{id}")]

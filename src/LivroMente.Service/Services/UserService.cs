@@ -63,7 +63,7 @@ namespace LivroMente.Service.Services
         public async Task<string> LoginAsync(string  email, string password)
         {
             var user = await _userManager.FindByEmailAsync(email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, password))
+            if (user == null || !user.IsActive || !await _userManager.CheckPasswordAsync(user, password))
             {
                 throw new UnauthorizedAccessException("Invalid credentials");
             }
@@ -75,7 +75,7 @@ namespace LivroMente.Service.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
             };
 
             var roles = await _userManager.GetRolesAsync(user);
