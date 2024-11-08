@@ -7,8 +7,8 @@ namespace LivroMente.API.Handlers.UserHandler
 {
     public class RegisterHandler : IRequestHandler<RegisterCommand, string>
     {
-        private readonly IUserService<User> _userService;
-        public RegisterHandler(IUserService<User> userService){_userService = userService;}
+        private readonly IUserService _userService;
+        public RegisterHandler(IUserService userService){_userService = userService;}
         public async Task<string> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
              return await _userService.RegisterAsync(command.CompleteName, command.Email, command.Role, command.Password);

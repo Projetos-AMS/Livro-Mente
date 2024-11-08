@@ -8,10 +8,11 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using LivroMente.Service.Dtos;
 
 namespace LivroMente.Service.Services
 {
-    public class UserService :  IUserService<User>
+    public class UserService :  IUserService
     {
         private readonly DataContext _context;
         private readonly UserManager<User> _userManager;
@@ -24,10 +25,19 @@ namespace LivroMente.Service.Services
             _roleManager = roleManager;
             _configuration = configuration;
         }
-        public List<UserRole> GetUserRolesInclude()
+        public async Task<IEnumerable<UserDto>>  GetUserRolesInclude()
         {
-            IQueryable<UserRole> entity =  _context.UserRoles.Include(p=>p.User).Include(p=>p.Role);
-            return entity.ToList();
+            List<UserDto> users = await _context.User
+                                        .Include(u => u.UserRoles)
+                                        .ThenInclude(u => u.Role)
+                                        .Select(u => new UserDto {
+                                            Id = u.Id,
+                                            CompleteName = u.CompleteName,
+                                            Email = u.Email,
+                                            IsActive = u.IsActive,
+                                            Roles = u.UserRoles.Select(u => u.Role.Name).ToList()
+                                        }).ToListAsync();
+            return users;
         }
 
         public async Task<string> RegisterAsync(string completeName, string email, string role, string password )
@@ -116,10 +126,26 @@ namespace LivroMente.Service.Services
             return result.Succeeded;
         }
 
-        public async Task<User> GetByIdAsync(Guid userId)
+        public async Task<UserDto> GetByIdAsync(Guid userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
-            return user;
+            List<string> roles = [];
+            if(user == null)
+                return null;
+            
+            if (user.UserRoles != null)
+            {
+               roles = user.UserRoles.Select(u => u.Role.Name).ToList();
+            }
+
+            UserDto userDto = new(){
+                Id = user.Id,
+                CompleteName = user.CompleteName,
+                Email = user.Email,
+                IsActive = user.IsActive,
+                Roles = roles
+            };
+            return userDto;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace LivroMente.API.Controllers
     {
          private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
-        private readonly IRoleService<Role> _roleService;
-        public RoleController(RoleManager<Role> roleManager, UserManager<User> userManager, IRoleService<Role> roleService)
+        private readonly IRoleService _roleService;
+        public RoleController(RoleManager<Role> roleManager, UserManager<User> userManager, IRoleService roleService)
         {
             _roleManager = roleManager;
             _userManager = userManager;

@@ -1,6 +1,5 @@
 using LivroMente.Domain.Models;
-using LivroMente.Domain.Models.IdentityEntities;
-using Microsoft.AspNetCore.Identity;
+
 
 namespace LivroMente.Service.Interfaces
 {
