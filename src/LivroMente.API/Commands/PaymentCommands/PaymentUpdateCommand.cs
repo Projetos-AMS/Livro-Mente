@@ -5,9 +5,9 @@ namespace LivroMente.API.Commands.PaymentCommands
 {
     public class PaymentUpdateCommand : IRequest<bool>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public PaymentRequest PaymentRequest { get; set; }
-        public PaymentUpdateCommand(Guid id,PaymentRequest paymentRequest)
+        public PaymentUpdateCommand(string id,PaymentRequest paymentRequest)
         {
             Id = id;
             PaymentRequest = paymentRequest;

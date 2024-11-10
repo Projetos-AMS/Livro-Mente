@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LivroMente.Domain.Models
+namespace LivroMente.Service.Dtos
 {
-    public class Entity
+    public class CategoryDto
     {
-         public string Id { get; private set; }
+        public string Description { get; set; }
     }
 }

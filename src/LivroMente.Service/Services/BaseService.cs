@@ -21,7 +21,7 @@ namespace LivroMente.Service.Services
         }
 
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(string id)
         {
             var entity = await _context.Set<TEntity>().FindAsync(id);
             _context.Set<TEntity>().Remove(entity);
@@ -33,7 +33,7 @@ namespace LivroMente.Service.Services
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetById(Guid id)
+        public async Task<TEntity> GetById(string id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
@@ -44,7 +44,7 @@ namespace LivroMente.Service.Services
         }
 
 
-        public async Task<bool> Update(Guid id)
+        public async Task<bool> Update(string id)
         {
             var entity = await _context.Set<TEntity>().FindAsync(id);
             _context.Set<TEntity>().Update(entity);

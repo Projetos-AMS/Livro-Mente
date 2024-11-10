@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LivroMente.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace LivroMente.Data.Migrations
                 name: "CategoryBook",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -70,7 +70,7 @@ namespace LivroMente.Data.Migrations
                 name: "Payment",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
@@ -188,7 +188,7 @@ namespace LivroMente.Data.Migrations
                 name: "Book",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Author = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false),
                     Synopsis = table.Column<string>(type: "TEXT", maxLength: 300, nullable: true),
@@ -200,7 +200,7 @@ namespace LivroMente.Data.Migrations
                     Language = table.Column<string>(type: "TEXT", maxLength: 2, nullable: false),
                     Classification = table.Column<int>(type: "INTEGER", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CategoryId = table.Column<string>(type: "TEXT", nullable: true),
                     UrlBook = table.Column<string>(type: "TEXT", nullable: true),
                     UrlImg = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -218,9 +218,9 @@ namespace LivroMente.Data.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    PaymentId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PaymentId = table.Column<string>(type: "TEXT", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ValueTotal = table.Column<float>(type: "REAL", nullable: false),
                     Status = table.Column<string>(type: "TEXT", nullable: true)
@@ -244,9 +244,9 @@ namespace LivroMente.Data.Migrations
                 name: "OrderDetails",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    OrderId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    BookId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    OrderId = table.Column<string>(type: "TEXT", nullable: false),
+                    BookId = table.Column<string>(type: "TEXT", nullable: false),
                     Amount = table.Column<int>(type: "INTEGER", nullable: false),
                     ValueUni = table.Column<float>(type: "REAL", nullable: false)
                 },

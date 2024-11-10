@@ -42,7 +42,7 @@ namespace LivroMente.API.Controllers
         [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetById(Guid Id)
+        public async Task<IActionResult> GetById(string Id)
         {
             var book = await _bookService.GetById(Id);
             if (book == null) return NotFound();
@@ -66,7 +66,7 @@ namespace LivroMente.API.Controllers
         [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Put(Guid Id, [FromBody] BookRequest request)
+        public async Task<IActionResult> Put(string Id, [FromBody] BookRequest request)
         {
             var cmd = new BookUpdateCommand(Id, request);
             var response = await _mediator.Send(cmd);
@@ -79,7 +79,7 @@ namespace LivroMente.API.Controllers
         [AllowAnonymous] 
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(string Id)
         {
             var cmd = new BookDeleteCommand(Id);
             var response = await _mediator.Send(cmd);

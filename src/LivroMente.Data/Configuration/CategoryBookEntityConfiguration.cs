@@ -10,7 +10,7 @@ namespace LivroMente.Data.Configuration
         {
             builder.ToTable("CategoryBook");
 
-            builder.Property<Guid>("Id")
+            builder.Property<string>("Id")
                    .ValueGeneratedOnAdd();
                    
             builder.Property(c => c.Description)

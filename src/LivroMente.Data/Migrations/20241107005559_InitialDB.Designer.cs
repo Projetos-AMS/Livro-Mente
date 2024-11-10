@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LivroMente.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241104015124_AddUserOrder")]
-    partial class AddUserOrder
+    [Migration("20241107005559_InitialDB")]
+    partial class InitialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.BookModel.Book", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -31,7 +31,7 @@ namespace LivroMente.Data.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<string>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Classification")
@@ -87,7 +87,7 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.CategoryBookModel.CategoryBook", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -220,17 +220,19 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderDetailsModel.OrderDetails", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Amount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("BookId")
+                    b.Property<string>("BookId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<string>("OrderId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<float>("ValueUni")
@@ -247,14 +249,15 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderModel.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PaymentId")
+                    b.Property<string>("PaymentId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
@@ -278,7 +281,7 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.PaymentModel.Payment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 

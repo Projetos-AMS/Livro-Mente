@@ -1,4 +1,6 @@
 
+using LivroMente.Domain.Models.CategoryBookModel;
+
 namespace LivroMente.Domain.Models.BookModel
 {
     public class Book : Entity
@@ -9,7 +11,7 @@ namespace LivroMente.Domain.Models.BookModel
 
         public Book(string title,string author,string synopsis,int quantity,int pages,
             string publishingCompany,string isbn,double value,string language,int classification,
-            bool isActive,Guid categoryId,string urlBook,string urlImg)
+            bool isActive,string categoryId,string urlBook,string urlImg)
         {
             Title = title;
             Author = author;
@@ -40,9 +42,10 @@ namespace LivroMente.Domain.Models.BookModel
         public string Language { get; set; }
         public int Classification { get; set; }
         public bool IsActive { get; set; }
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string UrlBook { get; set; }
         public string UrlImg { get; set; }
+        public CategoryBook CategoryBook { get; set; }
        
     }
 }

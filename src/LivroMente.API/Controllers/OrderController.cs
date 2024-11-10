@@ -30,21 +30,21 @@ namespace LivroMente.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var orders = _order.GetOrder();
-            if (orders.Count() == 0) return NoContent();
+            if (orders == null) return NoContent();
             return Ok(orders);
         }
 
-        // [HttpGet("{Id}")]
-        // // [Authorize(Roles = "admin")]
-        // [AllowAnonymous]
-        // [ProducesResponseType((int)HttpStatusCode.OK)]
-        // [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        // public async Task<IActionResult> GetById(Guid Id)
-        // {
-        //     var category = await _order.GetOrderDetails(Id);
-        //     if (category == null) return NotFound();
-        //     return Ok(category);
-        // }
+        [HttpGet("{Id}")]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetById(string Id)
+        {
+            var order = await _order.GetOrderDetails(Id);
+            if (order == null) return NotFound();
+            return Ok(order);
+        }
 
 
         [HttpPost]
@@ -55,6 +55,15 @@ namespace LivroMente.API.Controllers
             var response = await  _mediator.Send(command);
             if(!response) return BadRequest();
             return CreatedAtRoute(response,response);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            var cmd = new OrderDisableCommand(Id);
+            var response = await _mediator.Send(cmd);
+            if(!response) return BadRequest();
+            return Ok();
         }
 
 

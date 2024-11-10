@@ -33,7 +33,7 @@ namespace LivroMente.API.Handlers.BookHandler
                 request.BookRequest.UrlImg
             );
 
-            var result = await _bookService.Add(book);
+             var result = await _bookService.Add(book);
             if(!result) return false;
             return true;
 }
