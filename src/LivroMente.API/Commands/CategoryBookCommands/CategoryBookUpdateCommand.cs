@@ -5,9 +5,9 @@ namespace LivroMente.API.Commands.CategoryBookCommands
 {
     public class CategoryBookUpdateCommand : IRequest<bool>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public CategoryBookRequest CategoryBookRequest { get; set; }
-        public CategoryBookUpdateCommand(Guid id, CategoryBookRequest categoryBookRequest)
+        public CategoryBookUpdateCommand(string id, CategoryBookRequest categoryBookRequest)
         {
             Id = id;
             CategoryBookRequest = categoryBookRequest;

@@ -11,7 +11,7 @@ namespace LivroMente.Data.Configuration
         {
             builder.ToTable("Book");
 
-            builder.Property<Guid>("Id")
+            builder.Property<string>("Id")
                     .ValueGeneratedOnAdd();
 
             builder.Property(b => b.Title)
@@ -42,7 +42,7 @@ namespace LivroMente.Data.Configuration
             builder.Property(b => b.Classification)
                 .IsRequired();
 
-            builder.HasOne<CategoryBook>()
+            builder.HasOne(c => c.CategoryBook)
                   .WithMany()
                   .IsRequired()
                   .HasForeignKey(b => b.CategoryId)

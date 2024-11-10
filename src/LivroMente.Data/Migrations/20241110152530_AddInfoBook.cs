@@ -5,7 +5,7 @@
 namespace LivroMente.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPropertyBook : Migration
+    public partial class AddInfoBook : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

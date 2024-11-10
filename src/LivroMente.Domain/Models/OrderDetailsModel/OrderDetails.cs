@@ -7,15 +7,15 @@ namespace LivroMente.Domain.Models.OrderDetailsModel
         public OrderDetails()
         {
         }
-        public OrderDetails(Guid orderId,Guid bookId,int amount,float valueUni)
+        public OrderDetails(string orderId,string bookId,int amount,float valueUni)
         {
             OrderId = orderId;
             BookId = bookId;
             Amount = amount;
             ValueUni = valueUni;
         }
-        public Guid OrderId { get; set; }
-        public Guid BookId { get; set; }
+        public string OrderId { get; set; }
+        public string BookId { get; set; }
         public int Amount { get; set; }
         public float ValueUni { get; set; }
         public Book Book{ get; set; }

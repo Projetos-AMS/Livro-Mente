@@ -7,9 +7,9 @@ namespace LivroMente.Service.Interfaces
     {
        Task<bool> Add(TEntity entity);
        Task<IEnumerable<TEntity>> GetAll();
-       Task<bool> Update(Guid id);
-       Task<bool> Delete(Guid id);
-       Task<TEntity> GetById(Guid id);
+       Task<bool> Update(string id);
+       Task<bool> Delete(string id);
+       Task<TEntity> GetById(string id);
        Task<bool> Save();
 
     }

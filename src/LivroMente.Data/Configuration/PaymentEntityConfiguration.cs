@@ -1,6 +1,5 @@
 using LivroMente.Domain.Models.PaymentModel;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LivroMente.Data.Configuration
@@ -11,7 +10,7 @@ namespace LivroMente.Data.Configuration
         {
             builder.ToTable("Payment");
 
-            builder.Property<Guid>("Id")
+            builder.Property<string>("Id")
                    .ValueGeneratedOnAdd();
 
             builder.Property(p => p.Description)

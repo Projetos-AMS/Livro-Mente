@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace LivroMente.API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "admin")]
-           // [AllowAnonymous] 
+    //[Authorize(Roles = "admin")]
+    [AllowAnonymous] 
     [ApiController]
     public class RoleController : ControllerBase
     {

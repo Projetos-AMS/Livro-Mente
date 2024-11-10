@@ -37,7 +37,7 @@ namespace LivroMente.API.Controllers
         [HttpGet("{Id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetById(Guid Id)
+        public async Task<IActionResult> GetById(string Id)
         {
             var payment = await _payment.GetById(Id);
             if (payment == null) return NotFound();

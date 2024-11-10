@@ -1,4 +1,3 @@
-using LivroMente.Domain.Models.BookModel;
 using LivroMente.Domain.Models.OrderDetailsModel;
 using LivroMente.Domain.Models.OrderModel;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +11,7 @@ namespace LivroMente.Data.Configuration
         {
             builder.ToTable("OrderDetails");
 
-            builder.Property<Guid>("Id")
+            builder.Property<string>("Id")
                    .ValueGeneratedOnAdd();
 
             builder.HasOne<Order>()

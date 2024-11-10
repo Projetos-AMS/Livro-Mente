@@ -5,10 +5,10 @@ namespace LivroMente.API.Commands.BookCommands
 {
     public class BookUpdateCommand : IRequest<bool>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public BookRequest BookRequest { get; set; }
 
-        public BookUpdateCommand(Guid id,BookRequest bookRequest)
+        public BookUpdateCommand(string id,BookRequest bookRequest)
         {
             Id = id;
             BookRequest = bookRequest;

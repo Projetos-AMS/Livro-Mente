@@ -1,5 +1,3 @@
-using LivroMente.Domain.Models.IdentityEntities;
-using LivroMente.Domain.Models.OrderDetailsModel;
 using LivroMente.Domain.Models.OrderModel;
 using LivroMente.Domain.Models.PaymentModel;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +11,7 @@ namespace LivroMente.Data.Configuration
         {
             builder.ToTable("Order");
 
-            builder.Property<Guid>("Id")
+            builder.Property<string>("Id")
                    .ValueGeneratedOnAdd();
 
             builder.Property(o => o.Date)

@@ -4,8 +4,8 @@ namespace LivroMente.API.Commands.CategoryBookCommands
 {
     public class CategoryBookDeleteCommand : IRequest<bool>
     {
-        public Guid Id { get; set; }
-        public CategoryBookDeleteCommand(Guid id)
+        public string Id { get; set; }
+        public CategoryBookDeleteCommand(string id)
         {
             Id = id;
         }

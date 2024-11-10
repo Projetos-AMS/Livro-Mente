@@ -4,8 +4,8 @@ namespace LivroMente.API.Commands.PaymentCommands
 {
     public class PaymentDeleteCommand : IRequest<bool>
     {
-        public Guid Id { get; set; }
-        public PaymentDeleteCommand(Guid id)
+        public string Id { get; set; }
+        public PaymentDeleteCommand(string id)
         {
             Id = id;
         }
