@@ -25,7 +25,6 @@ namespace LivroMente.API.Handlers.AdminHandler
 
             var allOrders = orders.Select(order => new AllOrders{
                 UserId = order.UserId,
-                PaymentId = order.PaymentId,
                 Date = order.Date,
                 ValueTotal = order.ValueTotal,
                 Total = total

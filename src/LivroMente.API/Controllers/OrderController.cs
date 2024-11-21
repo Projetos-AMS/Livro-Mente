@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.OData.Query;
 using LivroMente.API.Commands.OrderCommands;
 
 
+
 namespace LivroMente.API.Controllers
 {
     [ApiController]
@@ -58,11 +59,15 @@ namespace LivroMente.API.Controllers
         }
 
         [HttpDelete("{Id}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Delete(string Id)
         {
             var cmd = new OrderDisableCommand(Id);
             var response = await _mediator.Send(cmd);
-            if(!response) return BadRequest();
+            if(response == null) return NotFound();
+            if(!response.Value) return BadRequest();
             return Ok();
         }
 

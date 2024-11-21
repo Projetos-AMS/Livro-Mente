@@ -32,7 +32,7 @@ namespace LivroMente.API.Controllers
             return Ok(entity);
         }
 
-        [HttpPost("CreateRole")]
+        [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]      
         public async Task<IActionResult> CreateRole(RoleViewModel roleDto)
@@ -48,7 +48,7 @@ namespace LivroMente.API.Controllers
             }
         }
 
-        [HttpPut("UpdateUserRole")]
+        [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

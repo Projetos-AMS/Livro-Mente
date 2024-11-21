@@ -253,10 +253,6 @@ namespace LivroMente.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PaymentId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
@@ -269,27 +265,9 @@ namespace LivroMente.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Order", (string)null);
-                });
-
-            modelBuilder.Entity("LivroMente.Domain.Models.PaymentModel.Payment", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Payment", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -428,12 +406,6 @@ namespace LivroMente.Data.Migrations
 
             modelBuilder.Entity("LivroMente.Domain.Models.OrderModel.Order", b =>
                 {
-                    b.HasOne("LivroMente.Domain.Models.PaymentModel.Payment", null)
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Order_Payment");
-
                     b.HasOne("LivroMente.Domain.Models.IdentityEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")

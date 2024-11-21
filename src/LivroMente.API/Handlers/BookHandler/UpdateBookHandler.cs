@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LivroMente.API.Handlers.BookHandler
 {
-    public class UpdateBookHandler : IRequestHandler<BookUpdateCommand, bool>
+    public class UpdateBookHandler : IRequestHandler<BookUpdateCommand, bool?>
     {
         private readonly IBookService _bookService;
 
@@ -13,10 +13,10 @@ namespace LivroMente.API.Handlers.BookHandler
             _bookService = bookService;
         }
 
-        public async Task<bool> Handle(BookUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<bool?> Handle(BookUpdateCommand request, CancellationToken cancellationToken)
         {
             var book = await _bookService.GetById(request.Id);
-            if(book == null) return false;
+            if(book == null) return null;
             book.Title = request.BookRequest.Title;
             book.Author = request.BookRequest.Author;
             book.Synopsis = request.BookRequest.Synopsis;
@@ -33,7 +33,8 @@ namespace LivroMente.API.Handlers.BookHandler
             book.UrlImg = request.BookRequest.UrlImg;
 
             var result = await _bookService.Update(book.Id);
-            if(!result) return false;
+            if(result == false) return false;
+         
             return true;
 
         }

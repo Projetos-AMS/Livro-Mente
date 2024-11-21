@@ -6,7 +6,7 @@ using MediatR;
 
 namespace LivroMente.API.Commands.OrderCommands
 {
-    public class OrderDisableCommand : IRequest<bool>
+    public class OrderDisableCommand : IRequest<bool?>
     {
         public OrderDisableCommand(string id)
         {
