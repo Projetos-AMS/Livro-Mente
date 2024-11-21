@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LivroMente.API.Handlers.CategoryBookHandler
 {
-    public class DeleteCategoryBookHandler : IRequestHandler<CategoryBookDeleteCommand, bool>
+    public class DeleteCategoryBookHandler : IRequestHandler<CategoryBookDeleteCommand, bool?>
     {
         private readonly ICategoryBookService _categoryBookService;
 
@@ -12,7 +12,7 @@ namespace LivroMente.API.Handlers.CategoryBookHandler
         {
             _categoryBookService = categoryBookService;
         }
-        public async Task<bool> Handle(CategoryBookDeleteCommand request, CancellationToken cancellationToken)
+        public async Task<bool?> Handle(CategoryBookDeleteCommand request, CancellationToken cancellationToken)
         {
             var category = await _categoryBookService.GetById(request.Id);
             if(category == null) return false;

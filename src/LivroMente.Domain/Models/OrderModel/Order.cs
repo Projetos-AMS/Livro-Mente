@@ -9,10 +9,9 @@ namespace LivroMente.Domain.Models.OrderModel
         {
             
         }
-        public Order(string userId, string paymentId,DateTime date, float valueTota,string status,ICollection<OrderDetails> orderDetailsl)
+        public Order(string userId,DateTime date, float valueTota,string status,ICollection<OrderDetails> orderDetailsl)
         {
             UserId = userId;
-            PaymentId = paymentId;
             Date = date;
             ValueTotal = valueTota;
             Status = status;
@@ -20,7 +19,6 @@ namespace LivroMente.Domain.Models.OrderModel
 
         }
         public string UserId { get; set; }
-        public string PaymentId { get; set; }
         public DateTime Date { get; set; } 
         public float ValueTotal { get; set; }
         public string  Status { get; set; }

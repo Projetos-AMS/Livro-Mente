@@ -8,7 +8,7 @@ using MediatR;
 
 namespace LivroMente.API.Handlers.OrderHandler
 {
-    public class DisableOrderHandler : IRequestHandler<OrderDisableCommand, bool>
+    public class DisableOrderHandler : IRequestHandler<OrderDisableCommand, bool?>
     {
         private readonly IOrderService _orderService;
 
@@ -16,7 +16,7 @@ namespace LivroMente.API.Handlers.OrderHandler
         {
             _orderService = orderService;
         }
-        public async Task<bool> Handle(OrderDisableCommand request, CancellationToken cancellationToken)
+        public async Task<bool?> Handle(OrderDisableCommand request, CancellationToken cancellationToken)
         {
             var order = await _orderService.GetById(request.Id);
             if(order == null) return false;

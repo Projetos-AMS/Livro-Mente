@@ -33,7 +33,7 @@ namespace LivroMente.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var books = await _bookService.GetAll();
-            if (books.Count() == 0) return NoContent();
+            if (books == null) return NoContent();
             return Ok(books);
         }
 
@@ -64,26 +64,32 @@ namespace LivroMente.API.Controllers
         [HttpPut("{Id}")]
          // [Authorize(Roles = "admin")]
         [AllowAnonymous] 
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Put(string Id, [FromBody] BookRequest request)
         {
             var cmd = new BookUpdateCommand(Id, request);
             var response = await _mediator.Send(cmd);
-            if (!response) return BadRequest();
+
+            if(response == null) return NotFound();
+
+            if (!response.Value) return BadRequest();
             return Ok();
         }
 
         [HttpDelete("{Id}")]
          // [Authorize(Roles = "admin")]
         [AllowAnonymous] 
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Delete(string Id)
         {
             var cmd = new BookDeleteCommand(Id);
             var response = await _mediator.Send(cmd);
-            if (!response) return BadRequest();
+            if(response == null) return NotFound();
+            if (!response.Value) return BadRequest();
             return Ok();
         }
     }

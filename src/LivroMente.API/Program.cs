@@ -25,7 +25,7 @@ builder.Services.AddControllers().AddOData(options => options.Select().Filter().
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    }); ;
+    }); 
 
 builder.Services.AddMediatR(add => add.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
@@ -42,7 +42,6 @@ builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.G
 builder.Services.AddScoped<IBlobService, BlobService>();
 builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 builder.Services.AddScoped<ICategoryBookService, CategoryBookService>();
-builder.Services.AddScoped<IPaymentService,PaymentService>();
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IOrderService,OrderService>();

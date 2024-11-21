@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LivroMente.API.Handlers.BookHandler
 {
-    public class DeleteBookHandler : IRequestHandler<BookDeleteCommand, bool>
+    public class DeleteBookHandler : IRequestHandler<BookDeleteCommand, bool?>
     {
         private readonly IBookService _bookService;
         public DeleteBookHandler(IBookService bookService)
@@ -12,7 +12,7 @@ namespace LivroMente.API.Handlers.BookHandler
             _bookService = bookService;
             
         }
-        public async Task<bool> Handle(BookDeleteCommand request, CancellationToken cancellationToken)
+        public async Task<bool?> Handle(BookDeleteCommand request, CancellationToken cancellationToken)
         {
             var book = await _bookService.GetById(request.Id);
             if(book == null) return false;

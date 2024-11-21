@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LivroMente.API.Commands.CategoryBookCommands
 {
-    public class CategoryBookUpdateCommand : IRequest<bool>
+    public class CategoryBookUpdateCommand : IRequest<bool?>
     {
         public string Id { get; set; }
         public CategoryBookRequest CategoryBookRequest { get; set; }

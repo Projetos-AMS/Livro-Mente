@@ -26,7 +26,6 @@ namespace LivroMente.API.Handlers.OrderHandler
             var order = new Order
             (
                 request.OrderRequest.UserId,
-                request.OrderRequest.PaymentId,
                 request.OrderRequest.Date,
                 request.OrderRequest.ValueTotal,
                 request.OrderRequest.Status,

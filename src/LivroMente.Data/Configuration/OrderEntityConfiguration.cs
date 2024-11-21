@@ -1,5 +1,4 @@
 using LivroMente.Domain.Models.OrderModel;
-using LivroMente.Domain.Models.PaymentModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -26,13 +25,6 @@ namespace LivroMente.Data.Configuration
             .HasForeignKey(_ => _.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Order_User");
-
-            builder.HasOne<Payment>()
-            .WithMany()
-            .IsRequired()
-            .HasForeignKey(_ => _.PaymentId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Order_Payment");
         }
     }
 }

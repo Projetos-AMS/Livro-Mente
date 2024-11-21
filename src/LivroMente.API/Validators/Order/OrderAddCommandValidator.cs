@@ -18,10 +18,6 @@ namespace LivroMente.API.Validators.Order
             RuleFor(_ => _.OrderRequest.UserId)
                 .NotEmpty()
                 .WithMessage("User is required.");
-
-            RuleFor(_ => _.OrderRequest.PaymentId)
-                .NotEmpty()
-                .WithMessage("Payment is required.");
         }
     }
 }
