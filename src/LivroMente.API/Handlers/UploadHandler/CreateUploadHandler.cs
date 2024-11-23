@@ -24,6 +24,8 @@ namespace LivroMente.API.Handlers
 
             );
 
+            if(result == null) return null;
+
             return result.AbsoluteUri;
         }
     }

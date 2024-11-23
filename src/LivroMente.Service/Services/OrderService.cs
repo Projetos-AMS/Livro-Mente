@@ -73,6 +73,41 @@ namespace LivroMente.Service.Services
 
         }
 
+        public  List<OrderDto> GetOrderDetailsByUser(string userId)
+        {
+             var order = _context.Order
+                .Where(o => o.UserId == userId)
+                    .Include(u => u.User)
+                    .Include(o => o.OrderDetails)
+                        .ThenInclude(b => b.Book)
+                    .Select(o => new OrderDto{
+                        Id = o.Id,
+                        UserId = o.UserId,
+                        Date = o.Date,
+                        Status = o.Status,
+                        ValueTotal = o.ValueTotal,
+                        User = new UserDto{ CompleteName = o.User.CompleteName},
+                        OrderDetails = o.OrderDetails
+                            .Select(od => new OrderDetailsDto{
+                                BookId = od.BookId,
+                                Amount = od.Amount,
+                                ValueUni = od.ValueUni,
+                                Book = new BookDto
+                                {
+                                    Title = od.Book.Title,
+                                    Author = od.Book.Author,
+                                    PublishingCompany = od.Book.PublishingCompany,
+                                    Value = od.Book.Value,
+                                    UrlImg = od.Book.UrlImg,
+                                    Category = new CategoryDto{
+                                    Description = od.Book.CategoryBook.Description,
+                                   }
+                                }
+                      }).ToList()
+                    
+                }).ToList();
 
+            return order;
+        }
     }
 }

@@ -23,9 +23,9 @@ namespace LivroMente.API.Validators.Book
                 .MaximumLength(60)
                 .WithMessage("Author must be short than 60 characters");
 
-            // RuleFor(_ => _.BookRequest.Synopsis)
-            //     .MaximumLength(300)
-            //     .WithMessage("Synopsis must be short than 300 characters");
+            RuleFor(_ => _.BookRequest.Synopsis)
+                .MaximumLength(300)
+                .WithMessage("Synopsis must be short than 300 characters");
 
             RuleFor(_ => _.BookRequest.PublishingCompany)
                 .NotEmpty()
@@ -34,10 +34,6 @@ namespace LivroMente.API.Validators.Book
                 .WithMessage("PublishingCompany must be longer than 2 characters")
                 .MaximumLength(20)
                 .WithMessage("PublishingCompany must be short than 20 characters");
-
-            // RuleFor(_ => _.BookRequest.Isbn)
-            //     .MaximumLength(20)
-            //     .WithMessage("Isbn must be short than 20 characters");
 
 
             RuleFor(_ => _.BookRequest.Language)

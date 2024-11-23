@@ -126,7 +126,7 @@ namespace LivroMente.Service.Services
             return result.Succeeded;
         }
 
-        public async Task<UserDto> GetByIdAsync(Guid userId)
+        public async Task<UserDto> GetByIdAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
             List<string> roles = [];

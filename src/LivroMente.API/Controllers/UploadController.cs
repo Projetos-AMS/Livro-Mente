@@ -34,6 +34,7 @@ namespace LivroMente.API.Controllers
 
             var cmd = new UploadAddCommand(file);
             var response = await  _mediator.Send(cmd);
+            if(response == null) return BadRequest();
             return Ok(new {path = response});
         }
 
@@ -45,8 +46,8 @@ namespace LivroMente.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var files = new UploadGetAllCommand();
-            if(files == null) return NoContent();
             var request = await _mediator.Send(files);
+            if(request == null) return NoContent();
             return Ok(request);
         }
 

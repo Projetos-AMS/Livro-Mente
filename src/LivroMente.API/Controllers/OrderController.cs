@@ -47,6 +47,18 @@ namespace LivroMente.API.Controllers
             return Ok(order);
         }
 
+        [HttpGet("{UserId}/orders")]
+        // [Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetByUserOrder(string UserId)
+        {
+            var order =  _order.GetOrderDetailsByUser(UserId);
+            if (order == null) return NotFound();
+            return Ok(order);
+        }
+
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]

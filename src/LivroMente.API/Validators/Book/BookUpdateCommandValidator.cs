@@ -35,10 +35,6 @@ namespace LivroMente.API.Validators.Book
                 .MaximumLength(20)
                 .WithMessage("PublishingCompany must be short than 20 characters");
 
-            RuleFor(_ => _.BookRequest.Isbn)
-                .MaximumLength(20)
-                .WithMessage("Isbn must be short than 20 characters");
-
             RuleFor(_ => _.BookRequest.Language)
                 .NotEmpty()
                 .WithMessage("Language is required.")

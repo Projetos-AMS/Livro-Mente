@@ -78,19 +78,35 @@ namespace LivroMente.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{Id}")]
-         // [Authorize(Roles = "admin")]
-        [AllowAnonymous] 
+        // [HttpDelete("{Id}")]
+        //  // [Authorize(Roles = "admin")]
+        // [AllowAnonymous] 
+        // [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        // [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        // [ProducesResponseType((int)HttpStatusCode.OK)]
+        // public async Task<IActionResult> DeleteBook(string Id)
+        // {
+        //     var cmd = new BookDeleteCommand(Id);
+        //     var response = await _mediator.Send(cmd);
+        //     if(response == null) return NotFound();
+        //     if (!response.Value) return BadRequest();
+        //     return Ok();
+        // }
+
+
+        [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Delete(string Id)
+        [AllowAnonymous] 
+        public async Task<IActionResult> Delete(string id)
         {
-            var cmd = new BookDeleteCommand(Id);
+            var cmd = new BookDisableCommand(id);
             var response = await _mediator.Send(cmd);
             if(response == null) return NotFound();
-            if (!response.Value) return BadRequest();
+            if(!response.Value) return BadRequest();
             return Ok();
         }
+
     }
 }

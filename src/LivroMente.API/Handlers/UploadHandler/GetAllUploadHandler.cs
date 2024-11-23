@@ -1,6 +1,7 @@
 using LivroMente.API.Commands.UploadCommands;
 using LivroMente.Service.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LivroMente.API.Handlers.UploadHandler
 {
@@ -14,9 +15,10 @@ namespace LivroMente.API.Handlers.UploadHandler
         }
         public async Task<List<string>> Handle(UploadGetAllCommand request, CancellationToken cancellationToken)
         {
-            if(request == null) throw new ArgumentNullException(nameof(request), "File not found.");
+            if(request == null)return null; //throw new ArgumentNullException(nameof(request), "File not found.");
             
             var result = await _blobService.GetFileBlobAsync("livromente");
+            if(result == null) return null;
             return result.ToList();
         }
     }

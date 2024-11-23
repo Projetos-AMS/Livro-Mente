@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LivroMente.API.Commands.OrderCommands;
 using LivroMente.API.Controllers;
-using LivroMente.Domain.Models.OrderDetailsModel;
-using LivroMente.Domain.Models.OrderModel;
 using LivroMente.Service.Dtos;
 using LivroMente.Service.Interfaces;
 using MediatR;

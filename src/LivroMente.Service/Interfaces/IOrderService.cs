@@ -11,6 +11,7 @@ namespace LivroMente.Service.Interfaces
     {
           public List<OrderDto> GetOrder();
           public Task<OrderDto> GetOrderDetails(string id);
+          public List<OrderDto> GetOrderDetailsByUser(string userId);
          
     }
 }

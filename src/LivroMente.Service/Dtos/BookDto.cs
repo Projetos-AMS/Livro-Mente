@@ -6,6 +6,7 @@ namespace LivroMente.Service.Dtos
         public string Author { get; set; }
         public double Value { get; set; }
         public string PublishingCompany { get; set; }
+        public string UrlImg { get; set; }
         public CategoryDto Category { get; set; }
     }
 }

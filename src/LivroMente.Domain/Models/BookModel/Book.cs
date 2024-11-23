@@ -46,6 +46,11 @@ namespace LivroMente.Domain.Models.BookModel
         public string UrlBook { get; set; }
         public string UrlImg { get; set; }
         public CategoryBook CategoryBook { get; set; }
+
+        public void Disabled()
+        {
+            IsActive = false;
+        }
        
     }
 }

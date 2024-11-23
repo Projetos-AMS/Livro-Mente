@@ -37,7 +37,7 @@ namespace LivroMente.API.Controllers
         [Authorize(Roles = "admin")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        public async Task<ActionResult> GetUserbyId(Guid id)
+        public async Task<ActionResult> GetUserbyId(string id)
         {
                 var entity = _userService.GetByIdAsync(id);
                 if (entity.Result != null)
