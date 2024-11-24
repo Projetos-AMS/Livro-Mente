@@ -7,6 +7,6 @@ namespace LivroMente.Domain.Models
 {
     public class Entity
     {
-         public string Id { get; private set; }
+        public string Id { get; private set; }
     }
 }
