@@ -154,30 +154,31 @@ namespace LivroMente.Tests.Controllers
             Assert.IsType<OkResult>(result);
         }
 
+
         [Fact]
-        public async void Delete_ShouldReturnNotFound_WhenMediatorReturnNull()
+        public async void Disable_ShouldReturnNotFound_WhenMediatorReturnNull()
         {
-            _mediator.Setup(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None)).ReturnsAsync((bool?)null);
+            _mediator.Setup(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None)).ReturnsAsync((bool?)null);
             var result = await _controller.Delete(Guid.NewGuid().ToString());
-            _mediator.Verify(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None), Times.Once);
+            _mediator.Verify(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None), Times.Once);
             Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
         public async void Delete_ShouldReturnBadRequest_WhenMediatorReturnFalse()
         {
-            _mediator.Setup(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None)).ReturnsAsync(false);
+            _mediator.Setup(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None)).ReturnsAsync(false);
             var result = await _controller.Delete(Guid.NewGuid().ToString());
-            _mediator.Verify(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None), Times.Once);
+            _mediator.Verify(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None), Times.Once);
             Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
         public async void Delete_ShouldReturnOk_WhenMediatorReturnTrue()
         {
-            _mediator.Setup(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None)).ReturnsAsync(true);
+            _mediator.Setup(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None)).ReturnsAsync(true);
             var result = await _controller.Delete(Guid.NewGuid().ToString());
-            _mediator.Verify(x => x.Send(It.IsAny<BookDeleteCommand>(), CancellationToken.None), Times.Once);
+            _mediator.Verify(x => x.Send(It.IsAny<BookDisableCommand>(), CancellationToken.None), Times.Once);
             Assert.IsType<OkResult>(result);
         }
 

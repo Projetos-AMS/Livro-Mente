@@ -15,7 +15,7 @@ namespace LivroMente.API.Handlers.CategoryBookHandler
         public async Task<bool?> Handle(CategoryBookDeleteCommand request, CancellationToken cancellationToken)
         {
             var category = await _categoryBookService.GetById(request.Id);
-            if(category == null) return false;
+            if(category == null) return null;
             var result = await _categoryBookService.Delete(category.Id);
             if(!result) return false;
             return true;
