@@ -99,6 +99,7 @@ namespace LivroMente.Service.Services
                                     PublishingCompany = od.Book.PublishingCompany,
                                     Value = od.Book.Value,
                                     UrlImg = od.Book.UrlImg,
+                                    UrlBook = od.Book.UrlBook,
                                     Category = new CategoryDto{
                                     Description = od.Book.CategoryBook.Description,
                                    }
